@@ -1,0 +1,8 @@
+.search-container {
+    display: flex;
+    gap: 0
+}
+
+span input {
+    width: 30vw;
+}
