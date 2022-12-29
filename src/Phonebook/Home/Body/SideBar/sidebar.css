@@ -1,0 +1,13 @@
+.alphabets {
+    position: absolute;
+}
+
+.hide {
+    display: none;
+}
+
+.sideBar Button {
+    display: block;
+    min-width: 100px;
+    margin-top: 5px;
+}
