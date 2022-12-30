@@ -9,9 +9,9 @@ function ContactPage() {
         setNewAge, newEmail, setNewEmail, newAddress, setNewAddress, genderType,
         setGenderType,
         editing, setEditing, editName, editLastName, editNumber, editAge,
-        editEmail, editAddress, favCounter, editFavCounter
-        //   setEditName, setEditLastName, setEditNumber,
-        // setEditAge, setEditEmail, setEditGenderType, setEditAddress 
+        editEmail, editAddress, favCounter, editFavCounter,
+        setEditName, setEditLastName, setEditNumber,
+        setEditAge, setEditEmail, setEditGenderType, setEditAddress
     } = useContext(NewContactContext);
     const [isDisabled, setIsDisabled] = useState(true);
     const navigate = useNavigate();
@@ -39,41 +39,54 @@ function ContactPage() {
             }
     }
     function editContact() {
-        localStorage.removeItem(JSON.stringify(Obj), newNumber);
+        editing ? localStorage.removeItem(JSON.stringify(Obj), editNumber)
+            : localStorage.removeItem(JSON.stringify(Obj), newNumber);
         setIsDisabled(false);
     }
     function saveContactValues() {
-        if (newAge === "") { setNewAge("") }
-        localStorage.setItem(JSON.stringify(Obj), editNumber);
+        if (editing) {
+            if (editAge === "") { setEditAge("") }
+            localStorage.setItem(JSON.stringify(Obj), editNumber);
+        }
+        else {
+            if (newAge === "") { setNewAge("") }
+            localStorage.setItem(JSON.stringify(Obj), newNumber);
+        }
     }
     function deleteContact() {
-        localStorage.removeItem(JSON.stringify(Obj), editNumber);
-        alert(`مخاطب ${newLastName} ${newName} با موفقیت حذف شد`);
+        if (editing) {
+            localStorage.removeItem(JSON.stringify(Obj), editNumber);
+            alert(`مخاطب ${editLastName} ${editName} با موفقیت حذف شد`);
+        }
+        else {
+            localStorage.removeItem(JSON.stringify(Obj), newNumber);
+            alert(`مخاطب ${newLastName} ${newName} با موفقیت حذف شد`);
+        }
         navigate("/");
     }
     function handleChangeNameValue(e) {
         const regExp = /^[ا-ی ]*$/.test(e.target.value);
-        if (regExp) { setNewName(e.target.value) }
+        if (regExp) { editing ? setEditName(e.target.value) : setNewName(e.target.value) }
     }
 
     function handleChangeLastNameValue(e) {
         const regExp = /^[ا-ی ]*$/.test(e.target.value);
-        if (regExp) { setNewLastName(e.target.value) }
+        if (regExp) { editing ? setEditLastName(e.target.value) : setNewLastName(e.target.value) }
     }
     function handleChangeNumberValue(e) {
         const regExp = /^[0-9]{11}$/.test(e.target.value);
-        if (regExp) { setNewNumber(e.target.value) }
+        if (regExp) { editing ? setEditNumber(e.target.value) : setNewNumber(e.target.value) }
     }
     function handleChangeAgeValue(e) {
         const regExp = /^[0-9]*$/.test(e.target.value);
-        if (regExp) { setNewAge(e.target.value) }
+        if (regExp) { editing ? setEditAge(e.target.value) : setNewAge(e.target.value) }
     }
     function handleChangeEmailValue(e) {
         const regExp = /^[a-zA-Z0-9._-]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$/.test(e.target.value)
-        if (regExp) { setNewEmail(e.target.value) }
+        if (regExp) { editing ? setEditEmail(e.target.value) : setNewEmail(e.target.value) }
     }
     function handleChangeAddressValue(e) {
-        setNewAddress(e.target.value);
+        editing ? setEditAddress(e.target.value) : setNewAddress(e.target.value)
     }
     return (
         <form className="contact_container">
@@ -159,11 +172,11 @@ function ContactPage() {
             </div>
             <div className="flex-items">
                 <Button className="delete-btn" text="ویرایش" disabled={!isDisabled} onClick={editContact}
-                 type="button" />
+                    type="button" />
                 <Button className="green-btn" disabled={isDisabled} text="ذخیره" type="button"
                     onClick={saveContactValues} />
                 <Button className="delete-btn" text="حذف" disabled={isDisabled} type="button"
-                 onClick={deleteContact} />
+                    onClick={deleteContact} />
             </div>
         </form>
     )
