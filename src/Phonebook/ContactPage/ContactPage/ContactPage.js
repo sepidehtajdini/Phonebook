@@ -9,60 +9,57 @@ function ContactPage() {
         setNewAge, newEmail, setNewEmail, newAddress, setNewAddress, genderType,
         setGenderType,
         editing, setEditing, editName, editLastName, editNumber, editAge,
-        editEmail, editAddress, fav, editFav,
+        editEmail, editAddress, favCounter, editFavCounter,
         setEditName, setEditLastName, setEditNumber,
         setEditAge, setEditEmail, setEditGenderType, setEditAddress
     } = useContext(NewContactContext);
     const [isDisabled, setIsDisabled] = useState(true);
-    const [mailTo, setMailTo] = useState("");
-    const [emptyMail, setEmptyMail] = useState(true);
-    const [tel, setTel] = useState("");
     const navigate = useNavigate();
     let Obj;
     {
         editing ? Obj = {
-            fav: `${editFav}`,
-            newName: `${editName}`,
-            newLastName: `${editLastName}`,
-            newNumber: `${editNumber}`,
-            newAge: `${editAge}`,
-            newEmail: `${editEmail}`,
-            genderType: `${genderType}`,
-            newAddress: `${editAddress}`
+            favCounter: editFavCounter,
+            newName: editName,
+            newLastName: editLastName,
+            newNumber: editNumber,
+            newAge: editAge,
+            newEmail: editEmail,
+            genderType: genderType,
+            newAddress: editAddress
         }
             : Obj = {
-                fav: `${fav}`,
-                newName: `${newName}`,
-                newLastName: `${newLastName}`,
-                newNumber: `${newNumber}`,
-                newAge: `${newAge}`,
-                newEmail: `${newEmail}`,
-                genderType: `${genderType}`,
-                newAddress: `${newAddress}`
+                favCounter: favCounter,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
             }
     }
     function editContact() {
-        editing ? localStorage.removeItem(editNumber, JSON.stringify(Obj))
-            : localStorage.removeItem(newNumber, JSON.stringify(Obj));
+        editing ? localStorage.removeItem(JSON.stringify(Obj), editNumber)
+            : localStorage.removeItem(JSON.stringify(Obj), newNumber);
         setIsDisabled(false);
     }
     function saveContactValues() {
         if (editing) {
             if (editAge === "") { setEditAge("") }
-            localStorage.setItem(editNumber, JSON.stringify(Obj));
+            localStorage.setItem(JSON.stringify(Obj), editNumber);
         }
         else {
             if (newAge === "") { setNewAge("") }
-            localStorage.setItem(newNumber, JSON.stringify(Obj));
+            localStorage.setItem(JSON.stringify(Obj), newNumber);
         }
     }
     function deleteContact() {
         if (editing) {
-            localStorage.removeItem(editNumber, JSON.stringify(Obj));
+            localStorage.removeItem(JSON.stringify(Obj), editNumber);
             alert(`مخاطب ${editLastName} ${editName} با موفقیت حذف شد`);
         }
         else {
-            localStorage.removeItem(newNumber, JSON.stringify(Obj));
+            localStorage.removeItem(JSON.stringify(Obj), newNumber);
             alert(`مخاطب ${newLastName} ${newName} با موفقیت حذف شد`);
         }
         navigate("/");
@@ -78,10 +75,7 @@ function ContactPage() {
     }
     function handleChangeNumberValue(e) {
         const regExp = /^[0-9]{11}$/.test(e.target.value);
-        if (regExp) {
-            setTel(e.target.value);
-            editing ? setEditNumber(e.target.value) : setNewNumber(e.target.value)
-        }
+        if (regExp) { editing ? setEditNumber(e.target.value) : setNewNumber(e.target.value) }
     }
     function handleChangeAgeValue(e) {
         const regExp = /^[0-9]*$/.test(e.target.value);
@@ -89,16 +83,10 @@ function ContactPage() {
     }
     function handleChangeEmailValue(e) {
         const regExp = /^[a-zA-Z0-9._-]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$/.test(e.target.value)
-        if (regExp) {
-            setMailTo(`${e.target.value}`);
-            editing ? setEditEmail(e.target.value) : setNewEmail(e.target.value)
-        }
+        if (regExp) { editing ? setEditEmail(e.target.value) : setNewEmail(e.target.value) }
     }
     function handleChangeAddressValue(e) {
         editing ? setEditAddress(e.target.value) : setNewAddress(e.target.value)
-    }
-    if (mailTo !== "") {
-        setEmptyMail(false)
     }
     return (
         <form className="contact_container">
@@ -183,15 +171,6 @@ function ContactPage() {
                 />
             </div>
             <div className="flex-items">
-                <Button
-                    type="button"
-                    text={<a href={`mailto:${mailTo}`} disabled={emptyMail}>mailto</a>}
-                />
-                <Button
-                    type="button"
-                    text={<a href={`tel:${tel}`}>تماس با کاربر</a>} />
-            </div>
-            <div className="flex-items">
                 <Button className="delete-btn" text="ویرایش" disabled={!isDisabled} onClick={editContact}
                     type="button" />
                 <Button className="green-btn" disabled={isDisabled} text="ذخیره" type="button"
@@ -199,7 +178,7 @@ function ContactPage() {
                 <Button className="delete-btn" text="حذف" disabled={isDisabled} type="button"
                     onClick={deleteContact} />
             </div>
-        </form >
+        </form>
     )
 }
 export default ContactPage
