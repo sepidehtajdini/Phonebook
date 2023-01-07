@@ -16,7 +16,7 @@ function Home() {
             findTextClass, setFindTextClass,
             alphabetsClass, setAlphabetsClass,
             outlet, setOutlet,
-            pair, setPair,
+            pair, setPair
         }}>
             <Header />
             <Body />
