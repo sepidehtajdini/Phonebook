@@ -3,9 +3,15 @@
     width: 95vw;
     height: 1400px;
     margin: auto;
-    /* background: linear-gradient(180deg, gray, white); */
-    background: linear-gradient(180deg, rgb(252, 171, 185), rgb(252, 207, 125));
     border-radius: 10px;
+}
+
+.pinkContainer {
+    background: linear-gradient(180deg, rgb(252, 171, 185), rgb(252, 207, 125));
+}
+
+.oliveContainer {
+    background: linear-gradient(180deg, rgb(166, 202, 103), rgb(243, 245, 116));
 }
 
 .search-result {
@@ -19,43 +25,61 @@
 }
 
 .search-result-innerText {
-    border: 10px solid rgba(102, 51, 153, 0.5);
     border-radius: 0.8rem;
     padding: 15px;
 }
 
+.pink-innerText {
+    border: 10px solid rgba(102, 51, 153, 0.5);
+}
+
+.olive-innerText {
+    border: 10px solid olivedrab;
+}
+
 .search-result-innerText li {
-    background-color: rgba(102, 51, 153, 0.5);
     margin: 5px;
     border-radius: 10px;
     padding: 5px;
 }
 
-.alphabets-show {
-    border: 10px solid rebeccapurple;
-    font-size: large;
-    position: sticky;
-    background: rgba(102, 51, 153, 0.5);
-    top: 0;
-    border-radius: .4rem;
-    min-width: 30vw;
-    height: 400px;
-    padding: 50px;
-    margin-right: 150px;
+.pink-innerText li {
+    background-color: rgba(102, 51, 153, 0.5);
+}
+
+.olive-innerText li {
+    background-color: olivedrab;
 }
 
 .sideBar {
     display: flex;
     padding: 30px;
     padding-top: 80px;
-    direction: rtl;
     position: absolute;
     z-index: 7;
-    /* background-color: gray; */
-    background-color: rgba(139, 127, 151, 0.486);
     width: 100px;
     height: 1290px;
     border-radius: 10px;
+}
+
+.pink-sideBar {
+    background-color: rgba(139, 127, 151, 0.486);
+}
+
+.olive-sideBar {
+    background-color: rgba(127, 151, 139, 0.486);
+}
+
+.alphabets-show {
+    font-size: large;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.562), rgba(158, 158, 158, 0.486));
+    border-radius: .4rem;
+    min-width: 30vw;
+    height: 400px;
+    padding: 50px;
+    margin-right: 150px;
 }
 
 .hide {
