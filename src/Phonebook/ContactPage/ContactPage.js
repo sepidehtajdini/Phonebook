@@ -18,24 +18,24 @@ function ContactPage() {
     let Obj;
     {
         editing ? Obj = {
-            favCounter: `${editFavCounter}`,
-            newName: `${editName}`,
-            newLastName: `${editLastName}`,
-            newNumber: `${editNumber}`,
-            newAge: `${editAge}`,
-            newEmail: `${editEmail}`,
-            genderType: `${genderType}`,
-            newAddress: `${editAddress}`
+            favCounter: editFavCounter,
+            newName: editName,
+            newLastName: editLastName,
+            newNumber: editNumber,
+            newAge: editAge,
+            newEmail: editEmail,
+            genderType: genderType,
+            newAddress: editAddress
         }
             : Obj = {
-                favCounter: `${favCounter}`,
-                newName: `${newName}`,
-                newLastName: `${newLastName}`,
-                newNumber: `${newNumber}`,
-                newAge: `${newAge}`,
-                newEmail: `${newEmail}`,
-                genderType: `${genderType}`,
-                newAddress: `${newAddress}`
+                favCounter: favCounter,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
             }
     }
     function editContact() {

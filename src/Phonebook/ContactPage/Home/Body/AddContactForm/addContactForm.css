@@ -1,0 +1,71 @@
+form {
+    /* background-color: gray; */
+    background-color: rgba(139, 127, 151, 0.486);
+    border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid rgba(139, 127, 151, 0.486);
+    width: 40vw;
+    /* height: 550px; */
+    margin: auto;
+}
+
+form:focus-within {
+    /* background-color: rgb(112, 144, 131);
+    border-color: rgb(47, 79, 68); */
+    background-color: rgba(121, 91, 151, 0.486);
+    border-color: rgba(121, 91, 151, 0.486);
+}
+
+.hide {
+    display: none;
+}
+
+label {
+    font-size: large;
+}
+
+.submit-form {
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+textarea {
+    min-height: 50px;
+    min-width: 78%;
+    border: 1px outset black;
+    border-radius: 5px;
+}
+
+.invalidEntry {
+    margin-left: 15vw;
+    background-color: rgba(214, 1, 54, 0.8);
+    color: white;
+    z-index: 17;
+    position: absolute;
+    width: 150px;
+    height: 25px;
+    text-align: center;
+    border-radius: 0.4rem;
+}
+
+.red-border {
+    border: 2px solid rgb(214, 1, 54);
+    box-shadow: 0 0 0 2px rgb(215, 1, 54);
+}
+
+@media screen and (max-width:800px) {
+    .submit-close {
+        margin: 10px
+    }
+
+    textarea {
+        min-height: 30px;
+        min-width: 50%;
+    }
+
+    .invalidEntry {
+        width: 50px;
+        height: 10px;
+    }
+}
