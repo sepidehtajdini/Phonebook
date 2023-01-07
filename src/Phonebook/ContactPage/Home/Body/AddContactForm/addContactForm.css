@@ -1,19 +1,26 @@
 form {
-    /* background-color: gray; */
     background-color: rgba(139, 127, 151, 0.486);
     border-radius: 10px;
     border-radius: 10px;
     border: 2px solid rgba(139, 127, 151, 0.486);
     width: 40vw;
-    /* height: 550px; */
     margin: auto;
 }
 
 form:focus-within {
-    /* background-color: rgb(112, 144, 131);
-    border-color: rgb(47, 79, 68); */
     background-color: rgba(121, 91, 151, 0.486);
     border-color: rgba(121, 91, 151, 0.486);
+}
+
+.gender-container {
+    display: flex;
+    width: 53%;
+    gap: 30px
+}
+
+.flex-items {
+    display: flex;
+    justify-content: space-around;
 }
 
 .hide {
