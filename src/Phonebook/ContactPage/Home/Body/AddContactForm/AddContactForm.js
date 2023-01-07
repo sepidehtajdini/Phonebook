@@ -1,21 +1,20 @@
 import { useState, useContext } from "react";
-import NewContactContext from "../../../NewContactContext";
 import { useNavigate } from "react-router-dom";
+import NewContactContext from "../../../NewContactContext";
+import MoreNums from "./MoreNums";
 import Button from "../../../Shared/Button/Button";
 import Input from "../../../Shared/Input/Input";
 import "./addContactForm.css";
 function AddNewContact() {
     const { newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber,
         newAge, setNewAge, newEmail, setNewEmail, genderType, setGenderType,
-        newAddress, setNewAddress
+        newAddress, setNewAddress, numbersObj, setNumbersObj
         , fav } = useContext(NewContactContext);
-
     const [invalidName, setInvalidName] = useState("hide");
     const [invalidLastName, setInvalidLastName] = useState("hide");
     const [invalidNumber, setInvalidNumber] = useState("hide");
     const [invalidAge, setInvalidAge] = useState("hide");
     const [invalidEmail, setInvalidEmail] = useState("hide");
-
     const [borderName, setBorderName] = useState("");
     const [borderLastName, setBorderLastName] = useState("");
     const [borderNumber, setBorderNumber] = useState("");
@@ -23,6 +22,17 @@ function AddNewContact() {
     const [borderEmail, setBorderEmail] = useState("");
     const navigate = useNavigate();
     const previousNumbers = [];
+    const Obj = {
+        fav: false,
+        newName: newName,
+        newLastName: newLastName,
+        newNumber: newNumber,
+        numbers: {},
+        newAge: newAge,
+        newEmail: newEmail,
+        genderType: genderType,
+        newAddress: newAddress
+    }
     for (let i = 0; i < localStorage.length; i++) {
         const contacts = JSON.parse(localStorage.getItem(localStorage.key(i)));
         previousNumbers.push(contacts.newNumber)
@@ -82,6 +92,9 @@ function AddNewContact() {
     function handleAddressChange(e) {
         setNewAddress(e.target.value)
     }
+    if (numbersObj !== {}) {
+        Object.assign(Obj.numbers, numbersObj);
+    }
     function addToPhoneBookForm(e) {
         e.preventDefault();
         if (newName === "") {
@@ -119,16 +132,6 @@ function AddNewContact() {
             return;
         }
         else {
-            const Obj = {
-                fav: false,
-                newName: newName,
-                newLastName: newLastName,
-                newNumber: newNumber,
-                newAge: newAge,
-                newEmail: newEmail,
-                genderType: genderType,
-                newAddress: newAddress
-            }
             localStorage.setItem(newNumber, JSON.stringify(Obj));
             alert(`مخاطب ${newName} ${newLastName} با موفقیت ثبت گردید`);
             navigate("/ContactPage");
@@ -167,6 +170,9 @@ function AddNewContact() {
                 inputClassName={borderNumber}
                 labelText="شماره تلفن: *" />
             <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم باشد</div>
+
+            <MoreNums />
+
             <Input
                 type="email"
                 name="email"
@@ -176,17 +182,17 @@ function AddNewContact() {
                 labelText="ایمیل:" />
             <div className={invalidEmail}>ایمیل غیرمجاز است</div>
 
-            <div className="inputClass">
+            <div className="flex-items">
                 <label>جنسیت: </label>
-                <div>
-                    <label htmlFor="woman">خانم</label>
-                    <input
+                <div className="gender-container">
+                    <Input
+                        labelText="خانم"
                         type="radio"
                         name="woman"
                         onChange={() => setGenderType("خانم")}
                         checked={genderType === "خانم" ? true : false} />
-                    <label htmlFor="man">آقا</label>
-                    <input
+                    <Input
+                        labelText="آقا"
                         type="radio"
                         name="man"
                         onChange={() => setGenderType("آقا")}
