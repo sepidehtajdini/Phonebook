@@ -1,6 +1,6 @@
 .contact_container {
-    width: 50vw;
-    height: 600px;
+    width: 45vw;
+    min-height: 550px;
     font-size: large;
     margin: auto;
     border-radius: 10px;
@@ -15,4 +15,14 @@
 .flex-items {
     display: flex;
     justify-content: space-around;
+}
+
+.mailto-tel {
+    margin: 8px 0 8px 0;
+}
+
+.gender-container {
+    display: flex;
+    width: 53%;
+    gap: 30px
 }
