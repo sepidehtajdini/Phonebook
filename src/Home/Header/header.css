@@ -53,7 +53,7 @@ nav {
     }
 }
 
-@media screen and (min-width:400px) {
+@media screen and (min-width:401px) {
     .header {
         padding: 18px 0 18px 0;
         margin-left: 0.6vw;
