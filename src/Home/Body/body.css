@@ -120,7 +120,7 @@
     }
 }
 
-@media screen and (min-width:400px) {
+@media screen and (min-width:401px) {
     .container {
         height: 775px;
     }
