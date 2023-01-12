@@ -1,32 +1,42 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useState } from "react";
-import NewContactContext from "./Phonebook/NewContactContext";
-import Home from "./Phonebook/Home/Home";
-import ContactPage from "./Phonebook/ContactPage/ContactPage";
-import SideBar from "./Phonebook/Home/Body/SideBar/SideBar";
-import AddNewContact from "./Phonebook/Home/Body/AddContactForm/AddContactForm";
-import ContactsList from "./Phonebook/Home/Body/ContactsList/ContactsList";
-import SearchResult from "./Phonebook/Home/Body/SearchResult/SearchResult";
+import { useEffect, useState } from "react";
+import NewContactContext from "./NewContactContext";
+import Home from "./Home/Home";
+import ContactPage from "./ContactPage/ContactPage";
+import SideBar from "./Home/Body/SideBar/SideBar";
+import AddNewContact from "./Home/Body/AddContactForm/AddContactForm";
+import ContactsList from "./Home/Body/ContactsList/ContactsList";
+import SearchResult from "./Home/Body/SearchResult/SearchResult";
+import SignUp from "./Home/Body/SignUp/SignUp";
+import LoginForm from "./Home/Body/SignUp/Login/LoginForm";
 const router = createBrowserRouter([
   {
     path: "/",
     element: (<Home />),
     children: ([
       {
-        path: "Home/AddNewContactForm",
+        path: "AddNewContactForm",
         element: (<AddNewContact />)
       },
       {
-        path: "Home/SideBar",
+        path: "SideBar",
         element: (<SideBar />)
       },
       {
-        path: "Home/SearchResult",
+        path: "SearchResult",
         element: (<SearchResult />)
       },
       {
-        path: "Home/ContactsList",
+        path: "ContactsList",
         element: (<ContactsList />)
+      },
+      {
+        path: "SignUp",
+        element: (<SignUp />)
+      },
+      {
+        path: "Login",
+        element: (<LoginForm />)
       }
     ])
   },
@@ -54,7 +64,14 @@ function App() {
   const [editFav, setEditFav] = useState(false);
   const [theme, setTheme] = useState("pinkTheme");
   const [numbersObj, setNumbersObj] = useState({});
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    if (sessionStorage.getItem("last-login")) {
+      setIsLoggedIn(true);
+      setUser(JSON.parse(sessionStorage.getItem("last-login")));
+    }
+  }, [])
   return (
     <NewContactContext.Provider value={{
       newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber, newAge, setNewAge,
@@ -65,7 +82,9 @@ function App() {
       setEditName, setEditLastName, setEditNumber, setEditAge, setEditEmail, setEditAddress,
       editFav, setEditFav,
       theme, setTheme,
-      numbersObj, setNumbersObj, 
+      numbersObj, setNumbersObj,
+      isLoggedIn, setIsLoggedIn,
+      user, setUser
     }}>
       <div>
         <RouterProvider router={router} />
