@@ -1,0 +1,249 @@
+.container {
+    direction: rtl;
+    width: 95vw;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.pinkContainer {
+    background: linear-gradient(180deg, rgb(252, 171, 185), rgb(252, 207, 125));
+}
+
+.oliveContainer {
+    background: linear-gradient(180deg, rgb(166, 202, 103), rgb(243, 245, 116));
+}
+
+.outlet-gap,
+.contacts-list {
+    width: 80%;
+    padding-top: 100px;
+    margin: auto;
+}
+
+.search-result {
+    margin: auto;
+    color: black;
+    text-align: center;
+}
+
+.search-result-innerText {
+    border-radius: 0.8rem;
+}
+
+.pink-innerText {
+    border: 10px solid rgba(102, 51, 153, 0.5);
+}
+
+.olive-innerText {
+    border: 10px solid olivedrab;
+}
+
+
+.pink-innerText li {
+    background-color: rgba(102, 51, 153, 0.5);
+}
+
+.olive-innerText li {
+    background-color: olivedrab;
+}
+
+.sideBar {
+    display: flex;
+    position: absolute;
+    z-index: 7;
+    border-radius: 10px;
+}
+
+.pink-sideBar {
+    background-color: rgba(139, 127, 151, 0.486);
+}
+
+.olive-sideBar {
+    background-color: rgba(127, 151, 139, 0.486);
+}
+
+.alphabets-show {
+    border-radius: 0.4rem;
+    min-width: 30vw;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(180deg, rgba(63, 63, 63, 0.562), rgba(158, 158, 158, 0.486));
+}
+
+.hide {
+    display: none;
+    width: 0;
+}
+
+.form {
+    margin: auto;
+    width: 60%;
+    padding-top: 100px;
+}
+
+@media screen and (max-width:400px) {
+    .container {
+        height: 610px;
+    }
+
+    .sideBar {
+        padding: 20px;
+        padding-top: 50px;
+        padding-right: 10px;
+        width: 30px;
+        height: 550px;
+    }
+
+    .alphabets-show {
+        font-size: x-small;
+        padding: 10px;
+        margin-right: 50px;
+    }
+
+    .search-result {
+        padding: 60px;
+        width: 60vw;
+        min-height: 100px;
+        font-size: xx-small;
+    }
+
+    .search-result-innerText li {
+        margin: 2px;
+        margin-right: 0;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .search-result-innerText {
+        padding: 0;
+        padding-left: 20px;
+    }
+}
+
+@media screen and (min-width:400px) {
+    .container {
+        height: 775px;
+    }
+
+    .sideBar {
+        padding: 35px;
+        padding-top: 60px;
+        padding-right: 15px;
+        width: 30px;
+        height: 680px;
+    }
+
+    .alphabets-show {
+        padding: 20px;
+        margin-right: 50px;
+    }
+
+    .search-result {
+        padding: 70px;
+        width: 60vw;
+        min-height: 100px;
+        font-size: x-small;
+    }
+
+    .search-result-innerText li {
+        margin: 2px;
+        margin-right: 0;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .search-result-innerText {
+        padding: 0;
+        padding-left: 25px;
+    }
+}
+
+@media screen and (min-width:535px) {
+    .container {
+        height: 1016px;
+    }
+
+    .sideBar {
+        padding-top: 60px;
+        padding-left: 40px;
+        width: 40px;
+        height: 920px;
+    }
+
+    .alphabets-show {
+        font-size: 0.9rem;
+        padding: 25px;
+        margin-right: 70px;
+    }
+
+    .search-result {
+        font-size: small;
+        width: 50vw;
+        min-height: 140px;
+    }
+
+
+    .search-result-innerText li {
+        margin: 3px;
+    }
+
+    .search-result-innerText {
+        padding: 15px;
+    }
+
+}
+
+@media screen and (min-width:670px) {
+    .container {
+        height: 1165px;
+    }
+
+    .sideBar {
+        padding-top: 80px;
+        padding-left: 0;
+        width: 100px;
+        height: 1050px;
+    }
+
+    .alphabets-show {
+        font-size: 1.1rem;
+        padding: 30px;
+        margin-right: 100px;
+    }
+
+    .search-result {
+        font-size: medium;
+        min-height: 170px;
+        padding:75px;
+        width:40vw;
+    }
+
+    .search-result-innerText li {
+        margin: 5px;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .container {
+        height: 1390px;
+    }
+
+    .sideBar {
+        padding: 30px;
+        padding-top: 80px;
+        height: 1280px;
+    }
+
+    .alphabets-show {
+        font-size: large;
+        padding: 50px;
+        margin-right: 150px;
+    }
+
+    .search-result {
+        font-size: large;
+        padding: 80px;
+        min-height: 200px;
+
+    }
+}
