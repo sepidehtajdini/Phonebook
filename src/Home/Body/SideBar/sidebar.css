@@ -13,7 +13,7 @@
     }
 }
 
-@media screen and (min-width:400px) {
+@media screen and (min-width:401px) {
     .sideBar Button {
         min-width: 50px;
         min-height: 18px;
