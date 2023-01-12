@@ -1,0 +1,130 @@
+form {
+    background-color: rgba(139, 127, 151, 0.486);
+    border-radius: 10px;
+    border: 2px solid rgba(139, 127, 151, 0.486);
+    padding: 7px;
+    margin: auto;
+}
+
+form:focus-within {
+    background-color: rgba(121, 91, 151, 0.486);
+    border-color: rgba(121, 91, 151, 0.486);
+}
+
+.top-form-text {
+    margin: auto;
+    text-align: center;
+    max-height: 20px;
+}
+
+.gender-container {
+    display: flex;
+    width: 53%;
+    gap: 30px
+}
+
+.flex-items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hide {
+    display: none;
+}
+
+.submit-form {
+    margin: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+textarea {
+    min-height: 50px;
+    min-width: 78%;
+    border: 1px outset black;
+    border-radius: 5px;
+}
+
+.invalidEntry {
+    margin-right: 15vw;
+    background-color: rgba(214, 1, 54, 0.8);
+    color: white;
+    z-index: 17;
+    position: absolute;
+    width: 20%;
+    font-size: 2vh;
+    text-align: center;
+    border-radius: 0.4rem;
+}
+
+.red-border {
+    border: 2px solid rgb(214, 1, 54);
+    box-shadow: 0 0 0 2px rgb(215, 1, 54);
+}
+
+@media screen and (max-width:400px) {
+
+    form {
+        width: 70vw;
+    }
+
+    .gender-container {
+        width: 70%;
+        gap: 10px;
+    }
+
+    .top-form-text {
+        font-size: xx-small;
+    }
+}
+
+@media screen and (min-width:400px) {
+    form {
+        width: 60vw;
+    }
+
+    .gender-container {
+        width: 60%;
+        gap: 20px;
+    }
+
+    .top-form-text {
+        font-size: x-small;
+    }
+}
+
+@media screen and (min-width:535px) {
+    form {
+        width: 50vw;
+    }
+
+    form .green-btn {
+        width: 30px
+    }
+
+    .flex-items {
+        margin-right: 10px;
+    }
+
+    .gender-container {
+        gap: 25px;
+    }
+
+    .top-form-text {
+        font-size: small;
+    }
+}
+
+@media screen and (min-width:670px) {
+    form {
+        width: 40vw
+    }
+
+    form .green-btn {
+        width: 35px
+    }
+
+    .gender-container {
+        gap: 30px
+    }
+}
