@@ -1,0 +1,157 @@
+.inputClass {
+    direction: rtl;
+    display: flex;
+    margin: auto;
+}
+
+input {
+    width: 70%;
+    border-radius: 0.3rem;
+}
+
+.gender-type {
+    direction: rtl;
+    display: flex;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    background-color: lightgray;
+}
+
+@media screen and (max-width:400px) {
+    .inputClass {
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 2px;
+        padding: 2px;
+    }
+
+    input {
+        height: 0.8rem;
+        margin-left: 5px;
+        font-size: 0.6em;
+    }
+
+    label {
+        font-size: x-small;
+        width: 20%;
+    }
+
+    .gender-type {
+        width: 40px;
+        margin-top: 4px;
+        padding: 0;
+    }
+
+    textarea {
+        font-size: 0.65em;
+        margin-left: 5px;
+    }
+}
+
+@media screen and (min-width:401px) {
+    .inputClass {
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 2px;
+        padding: 2px;
+    }
+
+    input {
+        margin-left: 10px;
+        height: 0.8rem;
+        font-size: x-small;
+    }
+
+    label {
+        font-size: 0.7em;
+    }
+
+    .gender-type {
+        width: 30px;
+        margin-top: 4px;
+        padding: 0;
+    }
+
+    textarea {
+        font-size: x-small;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (min-width:535px) {
+    .inputClass {
+        width: 90%;
+        margin-top: 4px;
+        padding: 4px;
+    }
+
+    input {
+        height: 1rem;
+        font-size: small;
+    }
+
+    label {
+        font-size: smaller;
+    }
+
+    .gender-type {
+        width: 35px;
+        margin-top: 5px;
+        padding: 2px;
+    }
+
+    textarea {
+        font-size: small;
+    }
+}
+
+@media screen and (min-width:670px) {
+    .inputClass {
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    input {
+        height: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    label {
+        font-size: medium;
+    }
+
+    .gender-type {
+        width: 50px;
+        padding: 4px;
+    }
+
+    textarea {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (min-width:992px) {
+
+    input {
+        height: 1.5rem;
+        font-size: medium;
+    }
+
+    label {
+        font-size: large;
+    }
+
+    .gender-type {
+        width: 60px;
+        padding: 5px;
+    }
+
+    textarea {
+        font-size: medium;
+    }
+}
