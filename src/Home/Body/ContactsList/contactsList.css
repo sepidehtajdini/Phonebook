@@ -75,7 +75,7 @@ td button {
     }
 }
 
-@media screen and (min-width:400px) {
+@media screen and (min-width:401px) {
     .sorting-btns-container {
         width: 10vw;
     }
@@ -104,5 +104,3 @@ td button {
         font-size: 1rem;
     }
 }
-
-@media screen and (min-width:992px) {}
