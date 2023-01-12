@@ -78,7 +78,7 @@ textarea {
     }
 }
 
-@media screen and (min-width:400px) {
+@media screen and (min-width:401px) {
     form {
         width: 60vw;
     }
