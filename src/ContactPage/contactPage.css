@@ -1,0 +1,78 @@
+.contact_container {
+    margin: auto;
+    border-radius: 10px;
+    direction: rtl;
+    background: linear-gradient(180deg, rgb(78, 78, 78), lightgray);
+}
+
+.contact_container h2 {
+    text-align: center;
+}
+
+.flex-items {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mailto-tel {
+    margin: 8px 0 8px 0;
+}
+
+@media screen and (max-width:400px) {
+    h2 {
+        font-size: medium;
+    }
+
+    .contact_container {
+        padding: 0 10px 10px 10px;
+        width: 45vw;
+    }
+
+    .contact_container .delete-btn,
+    .contact_container .green-btn {
+        width: 25px
+    }
+}
+
+@media screen and (min-width:400px) {
+    h2 {
+        font-size: medium;
+    }
+}
+
+@media screen and (min-width:535px) {
+    h2 {
+        font-size: 1.1em;
+    }
+
+    .contact_container {
+        padding: 0 15px 15px 15px;
+        width: 40vw;
+    }
+
+    .contact_container .delete-btn,
+    .contact_container .green-btn {
+        width: 58px;
+    }
+}
+
+@media screen and (min-width:670px) {
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .contact_container {
+        padding: 0 27px 27px 27px;
+        width: 35vw;
+    }
+}
+
+@media screen and (min-width:992px) {
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .contact_container {
+        padding: 0 50px 50px 50px;
+    }
+}
