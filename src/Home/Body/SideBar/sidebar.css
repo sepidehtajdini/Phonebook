@@ -1,0 +1,41 @@
+.alphabets {
+    position: absolute;
+}
+
+.sideBar Button {
+    display: block;
+}
+
+@media screen and (max-width:400px) {
+    .sideBar Button {
+        min-width: 40px;
+        margin-top: 2px;
+    }
+}
+
+@media screen and (min-width:400px) {
+    .sideBar Button {
+        min-width: 50px;
+        min-height: 18px;
+        margin-top: 3px;
+    }
+}
+
+@media screen and (min-width:535px) {
+    .sideBar Button {
+        min-width: 65px;
+        margin-top: 5px;
+    }
+}
+
+@media screen and (min-width:670px) {
+    .sideBar Button {
+        min-width: 80px;
+    }
+}
+
+@media screen and (min-width:992px) {
+    .sideBar Button {
+        min-width: 100px;
+    }
+}
