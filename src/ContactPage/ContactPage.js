@@ -33,17 +33,33 @@ function ContactPage() {
         setEditAddress(JSON.parse(sessionStorage.getItem("edit-contact")).newAddress)
     }
     else if (sessionStorage.getItem("edit-contact") && editName !== "") {
-        Obj = {
-            user: user.username,
-            fav: editFav,
-            newName: editName,
-            newLastName: editLastName,
-            newNumber: editNumber,
-            numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
-            newAge: editAge,
-            newEmail: editEmail,
-            genderType: genderType,
-            newAddress: editAddress
+        if (sessionStorage.getItem("numbers")) {
+            Obj = {
+                user: user.username,
+                fav: editFav,
+                newName: editName,
+                newLastName: editLastName,
+                newNumber: editNumber,
+                numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
+                newAge: editAge,
+                newEmail: editEmail,
+                genderType: genderType,
+                newAddress: editAddress
+            }
+        }
+        else {
+            Obj = {
+                user: user.username,
+                fav: editFav,
+                newName: editName,
+                newLastName: editLastName,
+                newNumber: editNumber,
+                numbers: {},
+                newAge: editAge,
+                newEmail: editEmail,
+                genderType: genderType,
+                newAddress: editAddress
+            }
         }
     }
     else if (sessionStorage.getItem("new-contact") && newName === "") {
@@ -57,17 +73,33 @@ function ContactPage() {
         setNewAddress(JSON.parse(sessionStorage.getItem("new-contact")).newAddress);
     }
     else if (sessionStorage.getItem("new-contact") && newName !== "") {
-        Obj = {
-            user: user.username,
-            fav: false,
-            newName: newName,
-            newLastName: newLastName,
-            newNumber: newNumber,
-            numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
-            newAge: newAge,
-            newEmail: newEmail,
-            genderType: genderType,
-            newAddress: newAddress
+        if (sessionStorage.getItem("numbers")) {
+            Obj = {
+                user: user.username,
+                fav: false,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
+            }
+        }
+        else {
+            Obj = {
+                user: user.username,
+                fav: false,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                numbers: {},
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
+            }
         }
     }
     function editContact() {
