@@ -191,9 +191,11 @@ button:disabled:hover {
     border-color: darkcyan;
     background-color: darkcyan;
 }
-.check-btn{
+
+.check-btn {
     background-image: url("./img/check.svg");
 }
+
 .center {
     margin-right: 35%;
 }
@@ -209,8 +211,8 @@ a {
         min-width: 15px;
         min-height: 15px;
         border-radius: 0.19rem;
-        padding: 0.1rem 0.1rem;
-        font-size: 0.5rem;
+        padding: 0.1rem 0.2rem;
+        font-size: 0.6rem;
         font-weight: 100;
         line-height: 1;
     }
@@ -233,9 +235,8 @@ a {
     .sign-in-btn,
     .contacts-list-btn,
     .alphabets-btn {
-        background-size: 0.7rem;
-        height: 10px;
-        width: 10px;
+        background-size: 0.8rem;
+        width: 20px;
     }
 
     a {
@@ -252,8 +253,6 @@ a {
         min-width: 15px;
         min-height: 15px;
         border-radius: 0.2rem;
-        padding: 0.1rem 0.1rem;
-        font-size: 0.55rem;
         font-weight: 200;
     }
 
@@ -277,9 +276,8 @@ a {
     .sign-in-btn,
     .contacts-list-btn,
     .alphabets-btn {
-        background-size: 0.85rem;
-        height: 20px;
-        width: 20px
+        background-size: 1rem;
+        width: 25px
     }
 
     a {
@@ -299,16 +297,6 @@ a {
         font-size: 0.8rem;
         font-weight: 400;
         line-height: 1.2;
-    }
-
-    .search-btn,
-    .theme-btn,
-    .sign-in-btn,
-    .contacts-list-btn,
-    .alphabets-btn {
-        background-size: 1rem;
-        height: 25px;
-        width: 25px;
     }
 
     a {
