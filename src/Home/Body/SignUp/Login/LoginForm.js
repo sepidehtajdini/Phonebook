@@ -13,14 +13,9 @@ export default function Login() {
     const [invalidUsername, setInvalidUsername] = useState("hide");
     const [invalidPassword, setInvalidPassword] = useState("hide");
     const navigate = useNavigate();
-
     const parsedJson = JSON.parse(localStorage.getItem("user-pass"));
-    function handleUsernameChange(e) {
-        setUsername(e.target.value)
-    }
-    function handlePasswordChange(e) {
-        setPassword(e.target.value)
-    }
+    function handleUsernameChange(e) { setUsername(e.target.value) }
+    function handlePasswordChange(e) { setPassword(e.target.value) }
     function handleSubmit(e) {
         e.preventDefault();
         const database = parsedJson.filter((item) => item.username === username);
@@ -81,8 +76,7 @@ export default function Login() {
                 text="ورود"
                 type="submit"
                 className="green-btn"
-                onClick={handleSubmit}
-            />
+                onClick={handleSubmit} />
         </form>
     )
 }
