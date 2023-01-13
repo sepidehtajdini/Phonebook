@@ -14,8 +14,7 @@ function AscendingList({ arr }) {
                     newEmail={contact.newEmail}
                     genderType={contact.genderType}
                     newAddress={contact.newAddress}
-                    key={contact.newNumber}
-                />)
+                    key={contact.newNumber}/>)
                 : null}
         </>
     )

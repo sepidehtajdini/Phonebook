@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Contact({ newName, newLastName, newEmail, newAge, newNumber, genderType, newAddress, fav,
     numbersObj, user }) {
     const { setNewName, setNewLastName, setNewAge, setNewNumber, setNewEmail, setGenderType, setNewAddress,
-        setEditing, setEditName, setEditLastName, setEditNumber, setEditAge, setEditEmail,
-        setEditAddress, setEditFav, setNumbersObj
-    } = useContext(NewContactContext);
+        setNumbersObj } = useContext(NewContactContext);
     const navigate = useNavigate();
     let Obj = {
         user: user,
@@ -21,7 +19,6 @@ function Contact({ newName, newLastName, newEmail, newAge, newNumber, genderType
         genderType: genderType,
         newAddress: newAddress
     }
-
     if (numbersObj !== {}) {
         Object.assign(Obj.numbers, Object.values(numbersObj));
     }
@@ -38,15 +35,7 @@ function Contact({ newName, newLastName, newEmail, newAge, newNumber, genderType
         window.location.reload()
     }
     function editContact() {
-        setEditing(true);
-        setEditFav(fav);
-        setEditName(newName);
-        setEditLastName(newLastName);
-        setEditNumber(newNumber);
-        setEditAge(newAge);
-        setEditEmail(newEmail);
-        setGenderType(genderType);
-        setEditAddress(newAddress);
+        sessionStorage.setItem("edit-contact", JSON.stringify(Obj));
         navigate("/ContactPage");
     }
     function handleFav() {

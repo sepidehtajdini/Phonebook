@@ -106,8 +106,7 @@ export default function ContactsList() {
               :
               <td colSpan="7" className="fav-row">
                 شما {localStorage.length} مخاطب دارید
-              </td>
-            }
+              </td>}
           </tr>
         </tbody>
       </table>
