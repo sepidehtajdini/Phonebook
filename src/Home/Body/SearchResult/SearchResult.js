@@ -10,13 +10,13 @@ function SearchResult() {
     return (
         <>
             {(searchText !== "" & findText !== "") ?
-                <div className={theme === "pinkTheme" ? "search-result-innerText pink-innerText"
+                <div className={theme === "pinkTheme"
+                    ? "search-result-innerText pink-innerText"
                     : "search-result-innerText olive-innerText"}>
                     <Button
                         type="button"
                         className="close-btn"
-                        onClick={() => navigate("/")}
-                    />
+                        onClick={() => navigate("/")} />
                     <ol dangerouslySetInnerHTML={{ __html: findText }} />
                 </div>
                 : <div>نتیجه ای یافت نشد</div>}
