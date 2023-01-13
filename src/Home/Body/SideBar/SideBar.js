@@ -58,19 +58,6 @@ function SideBar() {
                 }
             }
         }
-        // if (Object.keys(JSON.parse(localStorage.getItem(localStorage.key(i)))).includes("fav")) {
-        //     const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        //     contacts.push(parsedJson.newLastName + " " + parsedJson.newName);
-        //     keyValues.push(
-        //         `${parsedJson.newLastName + " " + parsedJson.newName}:
-        //     <div style="background-color:lightgray;border-radius:.4rem;text-align:center">
-        //         <div>${parsedJson.newNumber}</div>
-        //         ${Object.values(parsedJson.numbers).map((num) =>
-        //             `<div>${num}</div>`)}
-        //         <div>${parsedJson.newEmail}</div>
-        //     </div > `
-        //     )
-        // }
     }
 
     function startLetter(letter) {
@@ -115,8 +102,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ت"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 text="ث"
@@ -124,8 +110,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ث"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -133,8 +118,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ج"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -142,8 +126,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("چ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -151,8 +134,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ح"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -160,8 +142,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("خ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -169,8 +150,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("د"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -178,8 +158,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ذ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -187,8 +166,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ر"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -196,8 +174,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ز"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -205,8 +182,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ژ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -214,8 +190,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("س"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -223,8 +198,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ش"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -232,8 +206,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ص"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -241,8 +214,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ض"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -250,8 +222,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ط"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -259,8 +230,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ظ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -268,8 +238,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ع"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -277,8 +246,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("غ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -286,8 +254,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ف"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -295,8 +262,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ق"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -304,8 +270,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ک"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -313,8 +278,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("گ"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -322,8 +286,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ل"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -331,8 +294,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("م"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -340,8 +302,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ن"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -349,8 +310,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("و"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -358,8 +318,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ه"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
             <Button
                 className={theme === "pinkTheme" ? "pink-sideBar-btn" : "olive-sideBar-btn"}
                 type="button"
@@ -367,8 +326,7 @@ function SideBar() {
                 onClick={() => {
                     startLetter("ی"); setFindTextClass("hide");
                     setAlphabetsClass("alphabets-show")
-                }}
-            />
+                }} />
         </div>
     )
 }
