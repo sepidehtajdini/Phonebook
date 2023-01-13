@@ -74,7 +74,7 @@ function App() {
       isLoggedIn, setIsLoggedIn,
       user, setUser
     }}>
-      <div>
+      <div className={theme === "pinkTheme" ? "container pink-container" : "container olive-container"}>
         <RouterProvider router={router} />
       </div>
     </NewContactContext.Provider>
