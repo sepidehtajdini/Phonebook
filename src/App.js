@@ -54,14 +54,6 @@ function App() {
   const [newAddress, setNewAddress] = useState("");
   const [genderType, setGenderType] = useState("انتخاب جنسیت");
   const [contactsListClass, setContactsListClass] = useState("hide");
-  const [editing, setEditing] = useState(false);
-  const [editName, setEditName] = useState("");
-  const [editLastName, setEditLastName] = useState("");
-  const [editNumber, setEditNumber] = useState("");
-  const [editAge, setEditAge] = useState("");
-  const [editEmail, setEditEmail] = useState("");
-  const [editAddress, setEditAddress] = useState("");
-  const [editFav, setEditFav] = useState(false);
   const [theme, setTheme] = useState("pinkTheme");
   const [numbersObj, setNumbersObj] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,10 +69,6 @@ function App() {
       newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber, newAge, setNewAge,
       newEmail, setNewEmail, newAddress, setNewAddress, genderType, setGenderType,
       contactsListClass, setContactsListClass,
-      editing, setEditing,
-      editName, editLastName, editNumber, editAge, editEmail, editAddress,
-      setEditName, setEditLastName, setEditNumber, setEditAge, setEditEmail, setEditAddress,
-      editFav, setEditFav,
       theme, setTheme,
       numbersObj, setNumbersObj,
       isLoggedIn, setIsLoggedIn,
