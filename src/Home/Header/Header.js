@@ -12,7 +12,7 @@ function Header() {
     const { theme, setTheme } = useContext(NewContactContext);
     const navigate = useNavigate();
     return (
-        <nav className={theme === "pinkTheme" ? "header pinkHeader" : "header oliveHeader"}>
+        <nav className={theme === "pinkTheme" ? "header pink-header" : "header olive-header"}>
             <Button
                 id="signup"
                 tooltipContent="عضویت|ورود"
