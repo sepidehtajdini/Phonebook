@@ -27,11 +27,6 @@
         padding: 0 10px 10px 10px;
         width: 45vw;
     }
-
-    .contact_container .delete-btn,
-    .contact_container .green-btn {
-        width: 25px
-    }
 }
 
 @media screen and (min-width:401px) {
@@ -48,11 +43,6 @@
     .contact_container {
         padding: 0 15px 15px 15px;
         width: 40vw;
-    }
-
-    .contact_container .delete-btn,
-    .contact_container .green-btn {
-        width: 58px;
     }
 }
 

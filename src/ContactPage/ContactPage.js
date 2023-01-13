@@ -195,140 +195,138 @@ function ContactPage() {
             : setNewAddress(e.target.value)
     }
     return (
-        <div className={theme === "pinkTheme" ? "container pinkContainer" : "container oliveContainer"}>
-            <form className="contact_container">
-                <Button
-                    disabled={disableReturn}
-                    type="button"
-                    className="close-btn"
-                    onClick={() => {
-                        sessionStorage.removeItem("edit-contact");
-                        sessionStorage.removeItem("new-contact");
-                        sessionStorage.removeItem("numbers");
-                        navigate("/")
-                    }}
-                />
-                <h2>مشخصات مخاطب</h2>
-                <div className="flex-items">
-                    <Input
-                        labelText="نام:"
-                        value={
-                            sessionStorage.getItem("edit-contact") ? editName : newName
-                        }
-                        name="name"
-                        type="text"
-                        disabled={isDisabled}
-                        onChange={handleChangeNameValue} />
-                </div>
-                <div className="flex-items">
-                    <Input
-                        labelText="نام خانوادگی: "
-                        value={sessionStorage.getItem("edit-contact") ? editLastName : newLastName}
-                        name="lastname"
-                        type="text"
-                        disabled={isDisabled}
-                        onChange={handleChangeLastNameValue} />
-                </div>
-                <div className="flex-items">
-                    <Input
-                        labelText="شماره تلفن: "
-                        value={sessionStorage.getItem("edit-contact") ? editNumber : newNumber}
-                        name="number"
-                        type="tel"
-                        disabled={isDisabled}
-                        onChange={handleChangeNumberValue} />
-                </div>
-                <div className="flex-items">
-                    {Obj.numbers !== {} ?
-                        Object.values(Obj.numbers).map((item) =>
-                            <Input
-                                key={item}
-                                value={item}
-                                labelText="شماره تلفن:"
-                                name="moreNumbers"
-                                type="tel"
-                                disabled={isDisabled}
-                                onChange={handleChangeMoreNums} />)
-                        : null}
-                </div>
-                {isDisabled === false ?
-                    <MoreNums
-                        Obj={Obj} />
+        <form className="contact_container">
+            <Button
+                disabled={disableReturn}
+                type="button"
+                className="close-btn"
+                onClick={() => {
+                    sessionStorage.removeItem("edit-contact");
+                    sessionStorage.removeItem("new-contact");
+                    sessionStorage.removeItem("numbers");
+                    navigate("/")
+                }}
+            />
+            <h2>مشخصات مخاطب</h2>
+            <div className="flex-items">
+                <Input
+                    labelText="نام:"
+                    value={
+                        sessionStorage.getItem("edit-contact") ? editName : newName
+                    }
+                    name="name"
+                    type="text"
+                    disabled={isDisabled}
+                    onChange={handleChangeNameValue} />
+            </div>
+            <div className="flex-items">
+                <Input
+                    labelText="نام خانوادگی: "
+                    value={sessionStorage.getItem("edit-contact") ? editLastName : newLastName}
+                    name="lastname"
+                    type="text"
+                    disabled={isDisabled}
+                    onChange={handleChangeLastNameValue} />
+            </div>
+            <div className="flex-items">
+                <Input
+                    labelText="شماره تلفن: "
+                    value={sessionStorage.getItem("edit-contact") ? editNumber : newNumber}
+                    name="number"
+                    type="tel"
+                    disabled={isDisabled}
+                    onChange={handleChangeNumberValue} />
+            </div>
+            <div className="flex-items">
+                {Obj.numbers !== {} ?
+                    Object.values(Obj.numbers).map((item) =>
+                        <Input
+                            key={item}
+                            value={item}
+                            labelText="شماره تلفن:"
+                            name="moreNumbers"
+                            type="tel"
+                            disabled={isDisabled}
+                            onChange={handleChangeMoreNums} />)
                     : null}
-                <div className="flex-items">
+            </div>
+            {isDisabled === false ?
+                <MoreNums
+                    Obj={Obj} />
+                : null}
+            <div className="flex-items">
+                <Input
+                    labelText="سن: "
+                    value={sessionStorage.getItem("edit-contact") ? editAge : newAge}
+                    name="age"
+                    type="number"
+                    disabled={isDisabled}
+                    onChange={handleChangeAgeValue} />
+            </div>
+            <div className="flex-items">
+                <Input
+                    labelText="ایمیل: "
+                    value={sessionStorage.getItem("edit-contact") ? editEmail : newEmail}
+                    name="email"
+                    type="email"
+                    disabled={isDisabled}
+                    onChange={handleChangeEmailValue} />
+            </div>
+            <div className="flex-items">
+                <label>جنسیت:</label>
+                <div className="gender-container">
                     <Input
-                        labelText="سن: "
-                        value={sessionStorage.getItem("edit-contact") ? editAge : newAge}
-                        name="age"
-                        type="number"
+                        labelText="خانم"
+                        name="woman"
+                        type="radio"
                         disabled={isDisabled}
-                        onChange={handleChangeAgeValue} />
-                </div>
-                <div className="flex-items">
+                        checked={genderType === "خانم" ? true : false}
+                        onChange={() => setGenderType("خانم")} />
                     <Input
-                        labelText="ایمیل: "
-                        value={sessionStorage.getItem("edit-contact") ? editEmail : newEmail}
-                        name="email"
-                        type="email"
+                        labelText="آقا"
+                        name="man"
+                        type="radio"
                         disabled={isDisabled}
-                        onChange={handleChangeEmailValue} />
+                        checked={genderType === "آقا" ? true : false}
+                        onChange={() => setGenderType("آقا")} />
                 </div>
-                <div className="flex-items">
-                    <label>جنسیت:</label>
-                    <div className="gender-container">
-                        <Input
-                            labelText="خانم"
-                            name="woman"
-                            type="radio"
-                            disabled={isDisabled}
-                            checked={genderType === "خانم" ? true : false}
-                            onChange={() => setGenderType("خانم")} />
-                        <Input
-                            labelText="آقا"
-                            name="man"
-                            type="radio"
-                            disabled={isDisabled}
-                            checked={genderType === "آقا" ? true : false}
-                            onChange={() => setGenderType("آقا")} />
-                    </div>
-                </div>
-                <div className="flex-items">
-                    <label htmlFor="address">نشانی: </label>
-                    <textarea
-                        name="address"
-                        disabled={isDisabled}
-                        value={sessionStorage.getItem("edit-contact") ? editAddress : newAddress}
-                        onChange={handleChangeAddressValue} />
-                </div>
-                <div className="mailto-tel flex-items">
-                    <a className="email-btn" href={sessionStorage.getItem("edit-contact") ? `mailto:${editEmail}`
-                        : `mailto:${newEmail}`}>ایمیل</a>
-                    <a className="phone-btn" href={sessionStorage.getItem("edit-contact") ? `tel:${editNumber}`
-                        : `tel:${newNumber}`}>تماس</a>
-                </div>
-                <div className="flex-items">
-                    <Button
-                        className="delete-btn"
-                        text="ویرایش"
-                        type="button"
-                        disabled={!isDisabled}
-                        onClick={editContact} />
+            </div>
+            <div className="flex-items">
+                <label htmlFor="address">نشانی: </label>
+                <textarea
+                    name="address"
+                    disabled={isDisabled}
+                    value={sessionStorage.getItem("edit-contact") ? editAddress : newAddress}
+                    onChange={handleChangeAddressValue} />
+            </div>
+            <div className="mailto-tel flex-items">
+                <a className="email-btn" href={sessionStorage.getItem("edit-contact") ? `mailto:${editEmail}`
+                    : `mailto:${newEmail}`}>ایمیل</a>
+                <a className="phone-btn" href={sessionStorage.getItem("edit-contact") ? `tel:${editNumber}`
+                    : `tel:${newNumber}`}>تماس</a>
+            </div>
+            <div className="flex-items">
+                <Button
+                    className="delete-btn"
+                    text="ویرایش"
+                    type="button"
+                    disabled={!isDisabled}
+                    onClick={editContact} />
 
-                    <Button
-                        className="green-btn"
-                        text="ذخیره"
-                        type="button"
-                        disabled={isDisabled}
-                        onClick={saveContactValues} />
-                    <Button
-                        className="delete-btn"
-                        text="حذف"
-                        type="button"
-                        disabled={isDisabled}
-                        onClick={deleteContact} />
-                </div>
-            </form >
-        </div>
+                <Button
+                    className="green-btn"
+                    text="ذخیره"
+                    type="button"
+                    disabled={isDisabled}
+                    onClick={saveContactValues} />
+                <Button
+                    className="delete-btn"
+                    text="حذف"
+                    type="button"
+                    disabled={isDisabled}
+                    onClick={deleteContact} />
+            </div>
+        </form >
     )
 }
 export default ContactPage
