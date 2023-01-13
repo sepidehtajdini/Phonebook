@@ -5,7 +5,7 @@ import MoreNums from "./MoreNums";
 import Button from "../../../Shared/Button/Button";
 import Input from "../../../Shared/Input/Input";
 import "./addContactForm.css";
-function AddNewContact() {
+function AddContactForm() {
     const { newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber,
         newAge, setNewAge, newEmail, setNewEmail, genderType, setGenderType,
         newAddress, setNewAddress, numbersObj, user } = useContext(NewContactContext);
@@ -21,17 +21,34 @@ function AddNewContact() {
     const [borderEmail, setBorderEmail] = useState("");
     const navigate = useNavigate();
     const previousNumbers = [];
-    const Obj = {
-        user: user,
-        fav: false,
-        newName: newName,
-        newLastName: newLastName,
-        newNumber: newNumber,
-        numbers: {},
-        newAge: newAge,
-        newEmail: newEmail,
-        genderType: genderType,
-        newAddress: newAddress
+    let Obj;
+    if (sessionStorage.getItem("last-login")) {
+        Obj = {
+            user: user.username,
+            fav: false,
+            newName: newName,
+            newLastName: newLastName,
+            newNumber: newNumber,
+            numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
+            newAge: newAge,
+            newEmail: newEmail,
+            genderType: genderType,
+            newAddress: newAddress
+        }
+    }
+    else {
+        Obj = {
+            user: "",
+            fav: false,
+            newName: newName,
+            newLastName: newLastName,
+            newNumber: newNumber,
+            numbers: {},
+            newAge: newAge,
+            newEmail: newEmail,
+            genderType: genderType,
+            newAddress: newAddress
+        }
     }
     for (let i = 0; i < localStorage.length; i++) {
         const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
@@ -93,11 +110,9 @@ function AddNewContact() {
     function handleAddressChange(e) {
         setNewAddress(e.target.value)
     }
-    if (numbersObj !== {}) {
-        Object.assign(Obj.numbers, numbersObj);
-    }
     function addToPhoneBookForm(e) {
         e.preventDefault();
+        Object.assign(Obj.numbers, numbersObj);
         if (newName === "") {
             setInvalidName("invalidEntry");
             setBorderName("red-border")
@@ -108,7 +123,7 @@ function AddNewContact() {
             setBorderLastName("red-border")
             return
         }
-        if (newNumber === "" || newNumber.length < 11) {
+        if (newNumber === "" || newNumber.length < 11 || newNumber.length > 11) {
             setInvalidNumber("invalidEntry");
             setBorderNumber("red-border");
             return
@@ -134,6 +149,7 @@ function AddNewContact() {
         }
         else {
             localStorage.setItem(newNumber, JSON.stringify(Obj));
+            sessionStorage.setItem("new-contact", JSON.stringify(Obj));
             alert(`مخاطب ${newName} ${newLastName} با موفقیت ثبت گردید`);
             navigate("/ContactPage");
         }
@@ -146,7 +162,7 @@ function AddNewContact() {
             <Button
                 type="button"
                 className="close-btn"
-                onClick={() => navigate("/")} />
+                onClick={() => { navigate("/") }} />
             <Input
                 type="text"
                 name="name"
@@ -172,7 +188,8 @@ function AddNewContact() {
                 labelText="شماره تلفن: *" />
             <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم باشد</div>
 
-            <MoreNums />
+            <MoreNums
+                Obj={Obj} />
 
             <Input
                 type="email"
@@ -226,4 +243,4 @@ function AddNewContact() {
         </form>
     )
 }
-export default AddNewContact
+export default AddContactForm

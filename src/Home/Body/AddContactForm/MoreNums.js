@@ -1,33 +1,20 @@
 import Button from "../../../Shared/Button/Button";
 import { useContext, useState } from "react";
 import NewContactContext from "../../../NewContactContext";
+import { Tooltip } from "react-tooltip";
 export default function MoreNums({ Obj }) {
-  const { setNumbersObj, numbersObj } = useContext(NewContactContext);
+  const { setNumbersObj } = useContext(NewContactContext);
   const [moreNumsList, setMoreNumsList] = useState([]);
-  const [isEnabled, setIsEnabled] = useState(false);
   function handleInputChange(e, index) {
     const regExp = /^[0-9]*$/.test(e.target.value);
     if (regExp) {
-      if (e.target.value.length < 11) {
-        alert("شماره را به همراه پیش شماره وارد کنید")
-        return
-      }
-      else {
-        setIsEnabled(true);
+      if (e.target.value.length === 11) {
         const list = [...moreNumsList];
         list[index] = e.target.value;
         setMoreNumsList(list);
       }
     }
-    else { setIsEnabled(false) }
   }
-  // function handleRemoveNumClick(index) {
-  //   const list = [...moreNumsList];
-  //   list.splice(index, 1);
-  //   setMoreNumsList(list);
-  //   Object.assign((numbers), null)
-  //    console.log(numbers)
-  // }
   function handleAddNumClick() {
     setMoreNumsList([...moreNumsList, ""]);
   }
@@ -41,12 +28,12 @@ export default function MoreNums({ Obj }) {
       const newValues = array.concat(moreNumsList)
       setNumbersObj(newValues);
       Object.assign(Obj.numbers, newValues);
-      localStorage.setItem(Obj.newNumber, JSON.stringify(Obj));
+      sessionStorage.setItem("numbers", JSON.stringify(Obj));
     }
     else {
-      Object.assign(Obj.numbers, moreNumsList);
       setNumbersObj(moreNumsList);
-      localStorage.setItem(Obj.newNumber, JSON.stringify(Obj));
+      Object.assign(Obj.numbers, moreNumsList);
+      sessionStorage.setItem("numbers", JSON.stringify(Obj));
     }
   }
   return (
@@ -58,7 +45,8 @@ export default function MoreNums({ Obj }) {
         text="افزودن شماره" />
       {moreNumsList.length >= 1 ? moreNumsList.map((x, index) => {
         return (
-          <div key={index} style={{ marginTop: 5 + "px" }}>
+          <div key={index} className="inputClass">
+            <label>شماره تلفن:</label>
             <input
               style={{ marginRight: 12 + "%", width: 60 + "%" }}
               type="tel"
@@ -67,19 +55,16 @@ export default function MoreNums({ Obj }) {
               value={x.tel}
               key={x.tel}
               onChange={(e) => handleInputChange(e, index)} />
-            {/* <Button
-              type="button"
-              className="delete-btn"
-              onClick={() => handleRemoveNumClick(index)}
-              text="حذف"
-            /> */}
             <Button
+              id="validate"
               type="button"
-              className="green-btn"
+              className="check-btn"
               onClick={handleNumSubmit}
-              text="تایید" />
-          </div>)
+              tooltipContent="تایید" />
+            <Tooltip anchorId="validate" className="tooltip green-tooltip" />
+          </div>
+        )
       }) : null}
-    </div>
+    </div >
   )
 }
