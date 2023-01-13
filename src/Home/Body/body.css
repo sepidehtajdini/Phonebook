@@ -1,15 +1,14 @@
 .container {
     direction: rtl;
-    width: 100vw;
-    margin: auto;
     border-radius: 10px;
+    margin: auto;
 }
 
-.pinkContainer {
+.pink-container {
     background: linear-gradient(180deg, rgb(252, 171, 185), rgb(252, 207, 125));
 }
 
-.oliveContainer {
+.olive-container {
     background: linear-gradient(180deg, rgb(166, 202, 103), rgb(243, 245, 116));
 }
 
@@ -64,7 +63,9 @@
 
 .alphabets-show {
     border-radius: 0.4rem;
-    min-width: 30vw;
+    min-width: 35vw;
+    min-height:200px;
+    height:max-content;
     position: sticky;
     top: 0;
     background: linear-gradient(180deg, rgba(63, 63, 63, 0.562), rgba(158, 158, 158, 0.486));
@@ -77,18 +78,18 @@
 
 .form {
     margin: auto;
-    width: 60%;
     padding-top: 100px;
 }
 
 @media screen and (max-width:400px) {
     .container {
-        height: 610px;
+        height: 630px;
+        width: 96vw;
     }
 
     .sideBar {
         padding: 20px;
-        padding-top: 50px;
+        padding-top: 60px;
         padding-right: 10px;
         width: 30px;
         height: 550px;
@@ -123,6 +124,7 @@
 @media screen and (min-width:401px) {
     .container {
         height: 775px;
+        width: 93.5vw;
     }
 
     .sideBar {
@@ -161,6 +163,7 @@
 @media screen and (min-width:535px) {
     .container {
         height: 1016px;
+        width: 94.5vw;
     }
 
     .sideBar {
@@ -196,6 +199,7 @@
 @media screen and (min-width:670px) {
     .container {
         height: 1165px;
+        width: 95.5vw
     }
 
     .sideBar {
@@ -214,18 +218,24 @@
     .search-result {
         font-size: medium;
         min-height: 170px;
-        padding:75px;
-        width:40vw;
+        padding: 75px;
+        width: 40vw;
     }
 
     .search-result-innerText li {
         margin: 5px;
     }
 }
+@media screen and (min-width:800px) {
+    .container{
+        width:96.5vw
+    }
+}
 
 @media screen and (min-width:992px) {
     .container {
         height: 1390px;
+        width:96.8vw;
     }
 
     .sideBar {
@@ -245,5 +255,10 @@
         padding: 80px;
         min-height: 200px;
 
+    }
+}
+@media screen and (min-width:1200px){
+    .container{
+        width:97.5vw;
     }
 }
