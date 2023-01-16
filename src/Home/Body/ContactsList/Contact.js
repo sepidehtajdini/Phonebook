@@ -51,7 +51,7 @@ function Contact({ newName, newLastName, newEmail, newAge, newNumber, genderType
                 }
             }
         }
-        window.location.reload()
+        navigate("/ContactsList")
     }
     return (<tr>
         <td className={Obj.fav === true ? "fav-row" : null}>{newName} {newLastName}</td>
