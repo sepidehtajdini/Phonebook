@@ -4,7 +4,7 @@ import NewContactContext from "./NewContactContext";
 import Home from "./Home/Home";
 import ContactPage from "./ContactPage/ContactPage";
 import SideBar from "./Home/Body/SideBar/SideBar";
-import AddNewContact from "./Home/Body/AddContactForm/AddContactForm";
+import AddContactForm from "./Home/Body/AddContactForm/AddContactForm";
 import ContactsList from "./Home/Body/ContactsList/ContactsList";
 import SearchResult from "./Home/Body/SearchResult/SearchResult";
 import SignUp from "./Home/Body/SignUp/SignUp";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: ([
       {
         path: "AddNewContactForm",
-        element: (<AddNewContact />)
+        element: (<AddContactForm />)
       },
       {
         path: "SideBar",
