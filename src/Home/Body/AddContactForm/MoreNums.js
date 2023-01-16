@@ -1,39 +1,37 @@
-import Button from "../../../Shared/Button/Button";
-import { useContext, useState } from "react";
-import NewContactContext from "../../../NewContactContext";
+import { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import Button from "../../../Shared/Button/Button";
 export default function MoreNums({ Obj }) {
-  const { setNumbersObj } = useContext(NewContactContext);
   const [moreNumsList, setMoreNumsList] = useState([]);
+  function handleAddNumClick() { setMoreNumsList([...moreNumsList, ""]) }
   function handleInputChange(e, index) {
     const regExp = /^[0-9]*$/.test(e.target.value);
     if (regExp) {
-      if (e.target.value.length === 11) {
-        const list = [...moreNumsList];
-        list[index] = e.target.value;
-        setMoreNumsList(list);
-      }
+      const list = [...moreNumsList];
+      list[index] = e.target.value;
+      setMoreNumsList(list);
     }
-  }
-  function handleAddNumClick() {
-    setMoreNumsList([...moreNumsList, ""]);
   }
   function handleNumSubmit() {
-    if (Obj.numbers !== {}) {
-      const array = [];
-      const lastValue = Object.values(Obj.numbers);
-      for (let i = 0; i < lastValue.length; i++) {
-        array.push(lastValue[i])
+    for (let i = 0; i < moreNumsList.length; i++) {
+      if (moreNumsList[i].length === 11) {
+        if (Obj.numbers !== {}) {
+          const array = [];
+          const lastValue = Object.values(Obj.numbers);
+          for (let i = 0; i < lastValue.length; i++) { array.push(lastValue[i]) }
+          const newValues = array.concat(moreNumsList);
+          Object.assign(Obj.numbers, newValues);
+          sessionStorage.setItem("numbers", JSON.stringify(Obj));
+        }
+        else {
+          Object.assign(Obj.numbers, moreNumsList);
+          sessionStorage.setItem("numbers", JSON.stringify(Obj));
+        }
       }
-      const newValues = array.concat(moreNumsList)
-      setNumbersObj(newValues);
-      Object.assign(Obj.numbers, newValues);
-      sessionStorage.setItem("numbers", JSON.stringify(Obj));
-    }
-    else {
-      setNumbersObj(moreNumsList);
-      Object.assign(Obj.numbers, moreNumsList);
-      sessionStorage.setItem("numbers", JSON.stringify(Obj));
+      else {
+        alert("شماره باید ۱۱ رقمی باشد");
+        return
+      }
     }
   }
   return (
@@ -43,17 +41,18 @@ export default function MoreNums({ Obj }) {
         className="black-btn center"
         onClick={handleAddNumClick}
         text="افزودن شماره" />
-      {moreNumsList.length >= 1 ? moreNumsList.map((x, index) => {
+      {moreNumsList.length >= 1 ? moreNumsList.map((item, index) => {
         return (
           <div key={index} className="inputClass">
-            <label>شماره تلفن:</label>
+            <label htmlFor="tel">شماره تلفن:</label>
             <input
+              autoFocus
               style={{ marginRight: 12 + "%", width: 60 + "%" }}
               type="tel"
               name="tel"
               placeholder="شماره را وارد کرده و تایید کنید"
-              value={x.tel}
-              key={x.tel}
+              value={item}
+              key={item}
               onChange={(e) => handleInputChange(e, index)} />
             <Button
               id="validate"

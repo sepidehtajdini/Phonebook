@@ -8,7 +8,7 @@ import "./addContactForm.css";
 function AddContactForm() {
     const { newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber,
         newAge, setNewAge, newEmail, setNewEmail, genderType, setGenderType,
-        newAddress, setNewAddress, numbersObj, user } = useContext(NewContactContext);
+        newAddress, setNewAddress, user } = useContext(NewContactContext);
     const [invalidName, setInvalidName] = useState("hide");
     const [invalidLastName, setInvalidLastName] = useState("hide");
     const [invalidNumber, setInvalidNumber] = useState("hide");
@@ -23,17 +23,33 @@ function AddContactForm() {
     const previousNumbers = [];
     let Obj;
     if (sessionStorage.getItem("last-login")) {
-        Obj = {
-            user: user.username,
-            fav: false,
-            newName: newName,
-            newLastName: newLastName,
-            newNumber: newNumber,
-            numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
-            newAge: newAge,
-            newEmail: newEmail,
-            genderType: genderType,
-            newAddress: newAddress
+        if (sessionStorage.getItem("numbers")) {
+            Obj = {
+                user: user.username,
+                fav: false,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
+            }
+        }
+        else {
+            Obj = {
+                user: user.username,
+                fav: false,
+                newName: newName,
+                newLastName: newLastName,
+                newNumber: newNumber,
+                numbers: {},
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
+            }
         }
     }
     else {
@@ -52,8 +68,17 @@ function AddContactForm() {
     }
     for (let i = 0; i < localStorage.length; i++) {
         const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        if (Object.keys(parsedJson).includes("newNumber")) {
-            previousNumbers.push(parsedJson.newNumber)
+        if (sessionStorage.getItem("last-login")) {
+            if (parsedJson.user === user.username) {
+                previousNumbers.push(parsedJson.newNumber)
+            }
+        }
+        else {
+            if (parsedJson.user === "") {
+                if (Object.keys(parsedJson).includes("newNumber")) {
+                    previousNumbers.push(parsedJson.newNumber)
+                }
+            }
         }
     }
     function handleNameInputChange(e) {
@@ -112,7 +137,6 @@ function AddContactForm() {
     }
     function addToPhoneBookForm(e) {
         e.preventDefault();
-        Object.assign(Obj.numbers, numbersObj);
         if (newName === "") {
             setInvalidName("invalidEntry");
             setBorderName("red-border")
@@ -188,8 +212,7 @@ function AddContactForm() {
                 labelText="شماره تلفن: *" />
             <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم باشد</div>
 
-            <MoreNums
-                Obj={Obj} />
+            <MoreNums Obj={Obj} />
 
             <Input
                 type="email"
@@ -223,8 +246,7 @@ function AddContactForm() {
                 placeholder="سن را وارد کنید"
                 inputClassName={borderAge}
                 onChange={handleAgeInputChange}
-                labelText="سن:"
-            />
+                labelText="سن:"/>
             <div className={invalidAge}>
                 سن مجاز بین ۱ تا ۱۰۰ است
             </div>
