@@ -22,7 +22,37 @@ input:focus {
     background-color: lightgray;
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:350px) {
+    .inputClass {
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 2px;
+        padding: 2px;
+    }
+    input {
+        height: 0.8rem;
+        margin-left: 5px;
+        font-size: 0.6em;
+    }
+
+    label {
+        font-size: x-small;
+        width: 20%;
+    }
+
+    .gender-type {
+        width: 40px;
+        margin-top: 4px;
+        padding: 0;
+    }
+
+    textarea {
+        font-size: 0.6em;
+        margin-left: 5px;
+    }
+}
+
+@media screen and (min-width:351px) {
     .inputClass {
         justify-content: space-around;
         width: 100%;
@@ -37,7 +67,7 @@ input:focus {
     }
 
     label {
-        font-size: small;
+        font-size: 0.7em;
         width: 20%;
     }
 
@@ -48,7 +78,7 @@ input:focus {
     }
 
     textarea {
-        font-size: 0.8em;
+        font-size: 0.7em;
         margin-left: 5px;
     }
 }
