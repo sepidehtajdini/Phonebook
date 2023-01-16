@@ -165,6 +165,10 @@ export default function ContactPage() {
     function handleChangeNumberValue(e) {
         const regExp = /^[0-9]*$/.test(e.target.value);
         if (regExp) { setEditNumber(e.target.value) }
+        else{
+            alert("شماره باید لاتین وارد شود");
+            return
+        }
     }
     function handleChangeAgeValue(e) {
         const regExp = /^[0-9]*$/.test(e.target.value);
