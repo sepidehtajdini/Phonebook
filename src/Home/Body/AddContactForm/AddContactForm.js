@@ -210,7 +210,7 @@ function AddContactForm() {
                 onChange={handleNumberInputChange}
                 inputClassName={borderNumber}
                 labelText="شماره تلفن: *" />
-            <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم باشد</div>
+            <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم و لاتین باشد</div>
 
             <MoreNums Obj={Obj} />
 
