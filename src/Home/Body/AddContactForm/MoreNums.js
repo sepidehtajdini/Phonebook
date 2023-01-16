@@ -11,6 +11,10 @@ export default function MoreNums({ Obj }) {
       list[index] = e.target.value;
       setMoreNumsList(list);
     }
+    else {
+      alert("شماره باید به لاتین وارد شود");
+      return
+    }
   }
   function handleNumSubmit() {
     for (let i = 0; i < moreNumsList.length; i++) {
