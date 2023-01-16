@@ -45,7 +45,7 @@ const router = createBrowserRouter([
     element: (<ContactPage />)
   }
 ])
-function App() {
+export default function App() {
   const [newName, setNewName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newNumber, setNewNumber] = useState("");
@@ -80,4 +80,3 @@ function App() {
     </NewContactContext.Provider>
   )
 }
-export default App
