@@ -34,7 +34,7 @@ function Header() {
                         onClick={() => {
                             setOutlet("form");
                             setAlphabetsClass("hide");
-                            navigate("/SignUp")
+                            navigate("/SignUp");
                         }} />
                     <Tooltip anchorId="signup" className='tooltip' />
                 </div>}
@@ -62,7 +62,7 @@ function Header() {
                 onClick={() => {
                     setOutlet("contacts-list");
                     setAlphabetsClass("hide");
-                    navigate("/ContactsList")
+                    navigate("/ContactsList");
                 }}
                 type="button" />
             <Tooltip anchorId="list" className='tooltip' />
@@ -83,7 +83,7 @@ function Header() {
                 onClick={() => {
                     setOutlet("form");
                     setAlphabetsClass("hide");
-                    navigate("/AddNewContactForm")
+                    navigate("/AddNewContactForm");
                 }}
                 type="button" />
             <Tooltip
