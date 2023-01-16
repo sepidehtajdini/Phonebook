@@ -18,6 +18,10 @@ export default function Numbers({ Obj, isDisabled }) {
                 sessionStorage.setItem("numbers", JSON.stringify(Obj));
             }
         }
+        else{
+            alert("شماره باید به لاتین وارد شود");
+            return
+        }
     }
     return (
         moreNumsList ?
