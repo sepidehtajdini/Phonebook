@@ -231,9 +231,13 @@ a {
     .descending,
     .phone-btn,
     .email-btn,
-    .power-off-btn,
-    .check-btn {
+    .power-off-btn {
         background-size: 0.5rem;
+    }
+
+    .check-btn {
+        background-size: 0.45rem;
+        height: 10px;
     }
 
     .search-btn,
@@ -244,6 +248,11 @@ a {
     .user-btn {
         background-size: 0.8rem;
         width: 20px;
+    }
+
+    .user-btn,
+    .sign-in-btn {
+        height: 20px;
     }
 
     a {
@@ -286,6 +295,11 @@ a {
     .user-btn {
         background-size: 1rem;
         width: 25px
+    }
+
+    .user-btn,
+    .sign-in-btn {
+        height: 25px;
     }
 
     a {
