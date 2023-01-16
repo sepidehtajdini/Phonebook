@@ -17,7 +17,8 @@ button:disabled:hover {
 .alphabets-btn,
 .search-btn,
 .theme-btn,
-.sign-in-btn {
+.sign-in-btn,
+.user-btn {
     border-color: khaki;
     background-color: khaki;
 }
@@ -26,7 +27,8 @@ button:disabled:hover {
 .alphabets-btn:hover,
 .search-btn:hover,
 .theme-btn:hover,
-.sign-in-btn:hover {
+.sign-in-btn:hover,
+.user-btn:hover {
     background-color: gold;
     border-color: gold;
     box-shadow: 0 0 0 2px gold;
@@ -52,6 +54,10 @@ button:disabled:hover {
 
 .sign-in-btn {
     background-image: url("./img/sign-in-alt.svg");
+}
+
+.user-btn {
+    background-image: url("./img/user-check.svg");
 }
 
 .sideBar-btn:focus {
@@ -234,7 +240,8 @@ a {
     .theme-btn,
     .sign-in-btn,
     .contacts-list-btn,
-    .alphabets-btn {
+    .alphabets-btn,
+    .user-btn {
         background-size: 0.8rem;
         width: 20px;
     }
@@ -275,7 +282,8 @@ a {
     .theme-btn,
     .sign-in-btn,
     .contacts-list-btn,
-    .alphabets-btn {
+    .alphabets-btn,
+    .user-btn {
         background-size: 1rem;
         width: 25px
     }
@@ -339,7 +347,8 @@ a {
     .theme-btn,
     .sign-in-btn,
     .contacts-list-btn,
-    .alphabets-btn {
+    .alphabets-btn,
+    .user-btn {
         background-size: 1.3em;
         height: 30px;
         width: 30px;
@@ -363,7 +372,8 @@ a {
     .theme-btn,
     .sign-in-btn,
     .contacts-list-btn,
-    .alphabets-btn {
+    .alphabets-btn,
+    .user-btn {
         width: 35px;
         height: 35px;
     }
