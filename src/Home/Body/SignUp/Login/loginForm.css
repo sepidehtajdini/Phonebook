@@ -2,47 +2,32 @@
     margin: auto;
 }
 
+.loggedIn {
+    margin-right: 0;
+    margin-top: 0;
+    max-width:max-content;
+}
+
 @media screen and (max-width:400px) {
     .loggedIn {
         font-size: xx-small;
-        max-width: 30vw;
-        margin-right: -20px;
-        margin-top: -50px;
     }
 }
 
 @media screen and (min-width:401px) {
     .loggedIn {
-        font-size: xx-small;
-        max-width: 33vw;
-        margin-right: -30px;
-        margin-top: -40px;
+        font-size: x-small;
     }
 }
 
 @media screen and (min-width:535px) {
     .loggedIn {
         font-size: small;
-        max-width: 30vw;
-        margin-right: -40px;
-        margin-top: -33px;
     }
 }
 
 @media screen and (min-width:670px) {
     .loggedIn {
-        font-size: 0.8rem;
-        max-width: 25vw;
-        margin-right: -50px;
-        margin-top: -22px;
-    }
-}
-
-@media screen and (min-width:992px) {
-    .loggedIn {
         font-size: 0.9rem;
-        max-width: 20vw;
-        margin-right: -90px;
-        margin-top: -10px;
     }
 }
