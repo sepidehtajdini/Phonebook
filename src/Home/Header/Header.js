@@ -13,16 +13,32 @@ function Header() {
     const navigate = useNavigate();
     return (
         <nav className={theme === "pinkTheme" ? "header pink-header" : "header olive-header"}>
-            <Button
-                id="signup"
-                tooltipContent="عضویت|ورود"
-                className="sign-in-btn"
-                onClick={() => {
-                    setOutlet("form");
-                    setAlphabetsClass("hide");
-                    navigate("/SignUp")
-                }} />
-            <Tooltip anchorId="signup" className='tooltip' />
+            {sessionStorage.getItem("last-login") ?
+                <div>
+                    <Button
+                        id="user"
+                        tooltipContent="پروفایل"
+                        className="user-btn"
+                        onClick={() => {
+                            setOutlet("form");
+                            setAlphabetsClass("hide");
+                            navigate("/SignUp")
+                        }} />
+                    <Tooltip anchorId='user' className='tooltip' />
+                </div>
+                : <div>
+                    <Button
+                        id="signup"
+                        tooltipContent="عضویت|ورود"
+                        className="sign-in-btn"
+                        onClick={() => {
+                            setOutlet("form");
+                            setAlphabetsClass("hide");
+                            navigate("/SignUp")
+                        }} />
+                    <Tooltip anchorId="signup" className='tooltip' />
+                </div>}
+
             <Search />
             <Button
                 id="alphabets"
