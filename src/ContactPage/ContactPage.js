@@ -22,7 +22,7 @@ export default function ContactPage() {
     const previousNumbers = [];
     let user;
     if (sessionStorage.getItem("last-login")) {
-        user = JSON.parse(sessionStorage.getItem("last-login")).username
+        user = JSON.parse(sessionStorage.getItem("last-login")).username;
     }
     else {
         user = ""
@@ -102,6 +102,8 @@ export default function ContactPage() {
                 return
             }
         }
+        // if(firstNumber)
+        // 
         if (sessionStorage.getItem("edit-contact")) {
             if (editAge === "") { setEditAge("") }
             Obj = {
