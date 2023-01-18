@@ -1,11 +1,9 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom";
-import NewContactContext from "../../../NewContactContext";
 import Button from "../../../Shared/Button/Button";
 import Input from "../../../Shared/Input/Input";
 import LoggedIn from "./Login/LoggedIn";
 export default function SignUpForm() {
-    const { isLoggedIn } = useContext(NewContactContext);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [repass, setRepass] = useState("");
@@ -14,11 +12,12 @@ export default function SignUpForm() {
     const allUsers = [];
     function handleSubmit(e) {
         e.preventDefault();
-        if (password !== repass) {
-            setInvalidPass("invalid-show");
+        if (username === "" || password === "" || repass === "") {
+            alert("لطفاٌ همه ی قسمتها را تکمیل کنید")
             return
         }
-        if (username === "" || password === "" || repass === "") {
+        if (password !== repass) {
+            setInvalidPass("invalidEntry");
             return
         }
         else {
@@ -44,12 +43,13 @@ export default function SignUpForm() {
                 localStorage.setItem("user-pass", JSON.stringify(allUsers));
                 alert(`${username} عضویت شما با موفقیت انجام شد`);
                 navigate("/Login");
+                console.log(allUsers)
             }
         }
     }
     return (
         <div>
-            {isLoggedIn ?
+            {sessionStorage.getItem("last-login") ?
                 <LoggedIn />
                 :
                 <form>
@@ -80,7 +80,7 @@ export default function SignUpForm() {
                         placeholder="گذر واژه را وارد کنید" />
 
                     <div className={invalidPass}>گذر واژه صحیح وارد نشده است</div>
-                    <div style={{display:"flex",justifyContent:"space-between"}}>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button
                             text="ثبت"
                             onClick={handleSubmit}
