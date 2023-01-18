@@ -56,7 +56,6 @@ export default function ContactPage() {
             genderType: genderType,
             newAddress: editAddress
         }
-        console.log(Obj)
     }
     else if (sessionStorage.getItem("new-contact")) {
         Obj = {
@@ -96,14 +95,13 @@ export default function ContactPage() {
     }
     function saveContactValues() {
         setDisableReturn(false);
-        for (let i = 0; i < numbers.length; i++) {
-            if (numbers[i].length !== 11 && numbers[i] !== "") {
+        for (let i = 0; i < Obj.numbers.length; i++) {
+            if (Obj.numbers[i].length !== 11) {
                 alert("شماره ی وارد شده صحیح نیست");
                 return
             }
         }
-        // if(firstNumber)
-        // 
+
         if (sessionStorage.getItem("edit-contact")) {
             if (editAge === "") { setEditAge("") }
             Obj = {
