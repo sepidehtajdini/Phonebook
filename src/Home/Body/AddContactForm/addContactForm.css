@@ -62,6 +62,12 @@ textarea {
     box-shadow: 0 0 0 2px rgb(215, 1, 54);
 }
 
+form .hazf {
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+}
+
 @media screen and (max-width:400px) {
     form {
         width: 70vw;
@@ -69,11 +75,19 @@ textarea {
 
     .gender-container {
         width: 70%;
-        gap: 10px;
+        gap: 20px;
     }
 
     .top-form-text {
         font-size: xx-small;
+    }
+
+    form .black-btn {
+        margin-right: 25vw;
+    }
+
+    form .hazf {
+        font-size: 0.5rem;
     }
 }
 
@@ -90,6 +104,14 @@ textarea {
     .top-form-text {
         font-size: x-small;
     }
+
+    form .black-btn {
+        margin-right: 20vw;
+    }
+
+    form .hazf {
+        font-size: x-small;
+    }
 }
 
 @media screen and (min-width:535px) {
@@ -99,6 +121,10 @@ textarea {
 
     form .green-btn {
         width: 30px
+    }
+
+    form .hazf {
+        font-size: small;
     }
 
     .flex-items {
@@ -112,6 +138,10 @@ textarea {
     .top-form-text {
         font-size: small;
     }
+
+    form .black-btn {
+        margin-right: 15vw;
+    }
 }
 
 @media screen and (min-width:670px) {
@@ -123,7 +153,11 @@ textarea {
         width: 35px
     }
 
+    form .hazf {
+        font-size: small;
+    }
+
     .gender-container {
-        gap: 30px
+        gap: 10px
     }
 }

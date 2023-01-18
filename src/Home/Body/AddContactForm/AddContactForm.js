@@ -1,55 +1,38 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NewContactContext from "../../../NewContactContext";
-import MoreNums from "./MoreNums";
 import Button from "../../../Shared/Button/Button";
 import Input from "../../../Shared/Input/Input";
 import "./addContactForm.css";
 function AddContactForm() {
-    const { newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber,
-        newAge, setNewAge, newEmail, setNewEmail, genderType, setGenderType,
-        newAddress, setNewAddress, user } = useContext(NewContactContext);
+    const { newName, setNewName, newLastName, setNewLastName, newAge, setNewAge, newEmail,
+        setNewEmail, genderType, setGenderType, newAddress, setNewAddress, numbers,
+        setNumbers, addNumber } = useContext(NewContactContext);
     const [invalidName, setInvalidName] = useState("hide");
     const [invalidLastName, setInvalidLastName] = useState("hide");
-    const [invalidNumber, setInvalidNumber] = useState("hide");
     const [invalidAge, setInvalidAge] = useState("hide");
     const [invalidEmail, setInvalidEmail] = useState("hide");
     const [borderName, setBorderName] = useState("");
     const [borderLastName, setBorderLastName] = useState("");
-    const [borderNumber, setBorderNumber] = useState("");
     const [borderAge, setBorderAge] = useState("");
     const [borderEmail, setBorderEmail] = useState("");
-    const navigate = useNavigate();
+    const [moreNumsList, setMoreNumsList] = useState([]);
+    const firstNumber = numbers[0];
     const previousNumbers = [];
+    const navigate = useNavigate();
     let Obj;
+    useEffect(() => { setNumbers([]) }, [])
     if (sessionStorage.getItem("last-login")) {
-        if (sessionStorage.getItem("numbers")) {
-            Obj = {
-                user: user.username,
-                fav: false,
-                newName: newName,
-                newLastName: newLastName,
-                newNumber: newNumber,
-                numbers: JSON.parse(sessionStorage.getItem("numbers")).numbers,
-                newAge: newAge,
-                newEmail: newEmail,
-                genderType: genderType,
-                newAddress: newAddress
-            }
-        }
-        else {
-            Obj = {
-                user: user.username,
-                fav: false,
-                newName: newName,
-                newLastName: newLastName,
-                newNumber: newNumber,
-                numbers: {},
-                newAge: newAge,
-                newEmail: newEmail,
-                genderType: genderType,
-                newAddress: newAddress
-            }
+        Obj = {
+            user: JSON.parse(sessionStorage.getItem("last-login")).username,
+            fav: false,
+            newName: newName,
+            newLastName: newLastName,
+            numbers: numbers,
+            newAge: newAge,
+            newEmail: newEmail,
+            genderType: genderType,
+            newAddress: newAddress
         }
     }
     else {
@@ -58,8 +41,7 @@ function AddContactForm() {
             fav: false,
             newName: newName,
             newLastName: newLastName,
-            newNumber: newNumber,
-            numbers: {},
+            numbers: numbers,
             newAge: newAge,
             newEmail: newEmail,
             genderType: genderType,
@@ -69,15 +51,14 @@ function AddContactForm() {
     for (let i = 0; i < localStorage.length; i++) {
         const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
         if (sessionStorage.getItem("last-login")) {
-            if (parsedJson.user === user.username) {
-                previousNumbers.push(parsedJson.newNumber)
+            const user = JSON.parse(sessionStorage.getItem("last-login")).username;
+            if (parsedJson.user === user) {
+                previousNumbers.push(parsedJson.numbers);
             }
         }
         else {
             if (parsedJson.user === "") {
-                if (Object.keys(parsedJson).includes("newNumber")) {
-                    previousNumbers.push(parsedJson.newNumber)
-                }
+                previousNumbers.push(parsedJson.numbers)
             }
         }
     }
@@ -97,18 +78,35 @@ function AddContactForm() {
             setBorderLastName("")
         }
     }
-    function handleNumberInputChange(e) {
+    function handleNumberInputChange(e, index) {
         const regExp = /^[0-9]*$/.test(e.target.value);
         if (regExp) {
-            setNewNumber(e.target.value);
-            setInvalidNumber("hide");
-            setBorderNumber("")
+            const list = [...moreNumsList];
+            list[index] = e.target.value;
+            setMoreNumsList(list);
+            if (e.target.value.length === 11) {
+                addNumber(e.target.value);
+            }
         }
     }
+    function handleAddNumClick() {
+        setMoreNumsList([...moreNumsList, ""])
+    }
+    function handleRemoveNumber(e, item) {
+        e.preventDefault();
+        setNumbers(numbers.filter((number) => number !== item));
+        setMoreNumsList(moreNumsList.filter((number) => number !== item))
+    }
+
     function handleEmailInputChange(e) {
         const regExp = /^[a-zA-Z0-9._-]+@[a-zA-Z]+(?:\.[a-zA-Z]+)*$/.test(e.target.value)
         if (regExp) {
             setNewEmail(e.target.value);
+            setInvalidEmail("hide");
+            setBorderEmail("");
+        }
+        if (newEmail === "") {
+            setNewEmail("");
             setInvalidEmail("hide");
             setBorderEmail("");
         }
@@ -147,20 +145,23 @@ function AddContactForm() {
             setBorderLastName("red-border")
             return
         }
-        if (newNumber === "" || newNumber.length < 11 || newNumber.length > 11) {
-            setInvalidNumber("invalidEntry");
-            setBorderNumber("red-border");
+        if (firstNumber === undefined || firstNumber === "") {
+            alert("شماره باید ۱۱ رقمی باشد");
             return
         }
-        if (previousNumbers.includes(newNumber)) {
-            alert("این شماره برای مخاطب دیگری ثبت شده است");
-            return
+        for (let i = 0; i < moreNumsList.length; i++) {
+            if (moreNumsList[i].length !== 11) {
+                alert("شماره باید ۱۱ رقمی باشد");
+                return
+            }
         }
-        if (newEmail === "") {
-            setNewEmail("");
-            setInvalidEmail("hide");
-            setBorderEmail("");
+        for (let num of previousNumbers) {
+            if (num === firstNumber) {
+                alert("این شماره برای مخاطب دیگری ثبت شده است");
+                return
+            }
         }
+
         if (newAge.length > 2) {
             setInvalidAge("invalidEntry");
             setBorderAge("red-border");
@@ -172,8 +173,9 @@ function AddContactForm() {
             return;
         }
         else {
-            localStorage.setItem(newNumber, JSON.stringify(Obj));
+            localStorage.setItem(firstNumber, JSON.stringify(Obj));
             sessionStorage.setItem("new-contact", JSON.stringify(Obj));
+            sessionStorage.setItem("first-number", Obj.numbers[0])
             alert(`مخاطب ${newName} ${newLastName} با موفقیت ثبت گردید`);
             navigate("/ContactPage");
         }
@@ -203,17 +205,24 @@ function AddContactForm() {
                 inputClassName={borderLastName}
                 labelText="نام خانوادگی: *" />
             <div className={invalidLastName}>نام خانوادگی را وارد کنید</div>
-            <Input
-                type="tel"
-                name="phoneNumber"
-                placeholder="شماره را به همراه پیش شماره وارد کنید"
-                onChange={handleNumberInputChange}
-                inputClassName={borderNumber}
-                labelText="شماره تلفن: *" />
-            <div className={invalidNumber}>شماره تلفن باید ۱۱ رقم و لاتین باشد</div>
-
-            <MoreNums Obj={Obj} />
-
+            <button className="black-btn" type="button" onClick={handleAddNumClick}>اضافه کردن شماره</button>
+            {moreNumsList.length >= 1 ? moreNumsList.map((item, index) => {
+                return (<div key={index} className="inputClass">
+                    <label htmlFor="tel">شماره تلفن: *</label>
+                    <input
+                        autoFocus
+                        type="tel"
+                        name="tel"
+                        value={item}
+                        key={item}
+                        onChange={(e) => handleNumberInputChange(e, index)} />
+                    <Button
+                        type="button"
+                        text="حذف"
+                        className="delete-btn hazf"
+                        onClick={(e) => handleRemoveNumber(e, item)} />
+                </div>)
+            }) : null}
             <Input
                 type="email"
                 name="email"
@@ -246,7 +255,7 @@ function AddContactForm() {
                 placeholder="سن را وارد کنید"
                 inputClassName={borderAge}
                 onChange={handleAgeInputChange}
-                labelText="سن:"/>
+                labelText="سن:" />
             <div className={invalidAge}>
                 سن مجاز بین ۱ تا ۱۰۰ است
             </div>
