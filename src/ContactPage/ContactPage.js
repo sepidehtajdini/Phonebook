@@ -3,59 +3,92 @@ import { useNavigate } from "react-router-dom";
 import NewContactContext from "../NewContactContext";
 import Input from "../Shared/Input/Input";
 import Button from "../Shared/Button/Button";
-import MoreNums from "../Home/Body/AddContactForm/MoreNums";
-import Numbers from "./Numbers";
 import "./contactPage.css";
 export default function ContactPage() {
-    const { newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber, newAge,
+    const { newName, setNewName, newLastName, setNewLastName, numbers, setNumbers, newAge,
         setNewAge, newEmail, setNewEmail, newAddress, setNewAddress, genderType,
-        setGenderType, user, setUser } = useContext(NewContactContext);
+        setGenderType } = useContext(NewContactContext);
     const [isDisabled, setIsDisabled] = useState(true);
     const [disableReturn, setDisableReturn] = useState(false);
     const [editName, setEditName] = useState("");
     const [editLastName, setEditLastName] = useState("");
-    const [editNumber, setEditNumber] = useState("");
     const [editAge, setEditAge] = useState("");
     const [editEmail, setEditEmail] = useState("");
     const [editAddress, setEditAddress] = useState("");
-    const [editFav, setEditFav] = useState(false);
-    const [isNumEmpty, setIsNumEmpty] = useState(true);
-    const [lastNum, setLastNum] = useState("");
+    const [moreNumsList, setMoreNumsList] = useState([]);
+    let firstNumber = sessionStorage.getItem("first-number");
+    const numbersExceptFirstNumber = [];
     const navigate = useNavigate();
+    const previousNumbers = [];
+    let user;
+    if (sessionStorage.getItem("last-login")) {
+        user = JSON.parse(sessionStorage.getItem("last-login")).username
+    }
+    else {
+        user = ""
+    }
     let Obj;
+    for (let i = 1; i < numbers.length; i++) {
+        numbersExceptFirstNumber.push(numbers[i]);
+    }
+    for (let i = 0; i < localStorage.length; i++) {
+        const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
+        if (sessionStorage.getItem("last-login")) {
+            if (parsedJson.user === user) {
+                previousNumbers.push(parsedJson.numbers)
+            }
+        }
+        else {
+            if (parsedJson.user === "") {
+                previousNumbers.push(parsedJson.numbers)
+            }
+        }
+    }
     if (sessionStorage.getItem("edit-contact")) {
-        Obj = JSON.parse(sessionStorage.getItem("edit-contact"));
+        Obj = {
+            user: user,
+            fav: JSON.parse(sessionStorage.getItem("edit-contact")).fav,
+            newName: editName,
+            newLastName: editLastName,
+            numbers: numbers,
+            newAge: editAge,
+            newEmail: editEmail,
+            genderType: genderType,
+            newAddress: editAddress
+        }
+        console.log(Obj)
     }
     else if (sessionStorage.getItem("new-contact")) {
-        Obj = JSON.parse(sessionStorage.getItem("new-contact"));
+        Obj = {
+            user: user,
+            fav: false,
+            newName: newName,
+            newLastName: newLastName,
+            numbers: numbers,
+            newAge: newAge,
+            newEmail: newEmail,
+            genderType: genderType,
+            newAddress: newAddress
+        }
     }
     useEffect(() => {
         if (sessionStorage.getItem("edit-contact")) {
-            setUser(JSON.parse(sessionStorage.getItem("edit-contact")).user);
-            setEditFav(JSON.parse(sessionStorage.getItem("edit-contact")).fav);
             setEditName(JSON.parse(sessionStorage.getItem("edit-contact")).newName);
             setEditLastName(JSON.parse(sessionStorage.getItem("edit-contact")).newLastName);
-            setEditNumber(JSON.parse(sessionStorage.getItem("edit-contact")).newNumber);
+            setNumbers(JSON.parse(sessionStorage.getItem("edit-contact")).numbers);
             setEditAge(JSON.parse(sessionStorage.getItem("edit-contact")).newAge);
             setGenderType(JSON.parse(sessionStorage.getItem("edit-contact")).genderType);
             setNewAddress(JSON.parse(sessionStorage.getItem("edit-contact")).newAddress);
-            setLastNum(JSON.parse(sessionStorage.getItem("edit-contact")).newNumber);
         }
         else if (sessionStorage.getItem("new-contact") && newName === "") {
-            setUser(JSON.parse(sessionStorage.getItem("new-contact")).user);
             setNewName(JSON.parse(sessionStorage.getItem("new-contact")).newName);
             setNewLastName(JSON.parse(sessionStorage.getItem("new-contact")).newLastName);
-            setNewNumber(JSON.parse(sessionStorage.getItem("new-contact")).newNumber);
+            setNumbers(JSON.parse(sessionStorage.getItem("new-contact")).numbers);
             setNewAge(JSON.parse(sessionStorage.getItem("new-contact")).newAge);
             setNewEmail(JSON.parse(sessionStorage.getItem("new-contact")).newEmail);
             setGenderType(JSON.parse(sessionStorage.getItem("new-contact")).genderType);
             setNewAddress(JSON.parse(sessionStorage.getItem("new-contact")).newAddress);
-            setLastNum(JSON.parse(sessionStorage.getItem("new-contact")).newNumber);
         }
-        if (Obj.numbers !== {}) {
-            setIsNumEmpty(false)
-        }
-
     }, [])
     function editContact() {
         setDisableReturn(true);
@@ -63,84 +96,72 @@ export default function ContactPage() {
     }
     function saveContactValues() {
         setDisableReturn(false);
-        if (sessionStorage.getItem("numbers")) {
-            const arrayOfNumbers = JSON.parse(sessionStorage.getItem("numbers"));
-            for (let i = 0; i < arrayOfNumbers.length; i++) {
-                console.log(arrayOfNumbers[i].length)
-                if (arrayOfNumbers[i].length !== 11) {
-                    alert("شماره ی وارد شده صحیح نیست");
-                    return
-                }
+        for (let i = 0; i < numbers.length; i++) {
+            if (numbers[i].length !== 11 && numbers[i] !== "") {
+                alert("شماره ی وارد شده صحیح نیست");
+                return
             }
         }
         if (sessionStorage.getItem("edit-contact")) {
             if (editAge === "") { setEditAge("") }
-            if (lastNum !== editNumber) {
-                if (editNumber.length !== 11) {
-                    alert("شماره ی وارد شده صحیح نیست");
-                    return
-                }
-                else {
-                    localStorage.removeItem(lastNum, JSON.stringify(Obj));
-                    Obj = {
-                        user: user,
-                        fav: editFav,
-                        newName: editName,
-                        newLastName: editLastName,
-                        newNumber: editNumber,
-                        numbers: Obj.numbers,
-                        newAge: editAge,
-                        newEmail: editEmail,
-                        genderType: genderType,
-                        newAddress: editAddress
-                    }
-                    localStorage.setItem(editNumber, JSON.stringify(Obj));
-                }
+            Obj = {
+                user: user,
+                fav: JSON.parse(sessionStorage.getItem("edit-contact")).fav,
+                newName: editName,
+                newLastName: editLastName,
+                numbers: Obj.numbers,
+                newAge: editAge,
+                newEmail: editEmail,
+                genderType: genderType,
+                newAddress: editAddress
+            }
+            if (firstNumber !== Obj.numbers[0]) {
+                localStorage.removeItem(firstNumber, sessionStorage.getItem("edit-contact"));
+                localStorage.setItem(Obj.numbers[0], JSON.stringify(Obj));
+            }
+            else if (firstNumber === Obj.numbers[0]) {
+                localStorage.setItem(firstNumber, JSON.stringify(Obj));
             }
         }
         else if (sessionStorage.getItem("new-contact")) {
             if (newAge === "") { setNewAge("") }
-            if (lastNum !== newNumber) {
-                if (newNumber.length !== 11) {
-                    alert("شماره ی وارد شده صحیح نیست");
-                    return
-                }
-                else {
-                    localStorage.removeItem(lastNum, JSON.stringify(Obj));
-                    Obj = {
-                        user: user,
-                        fav: false,
-                        newName: newName,
-                        newLastName: newLastName,
-                        newNumber: newNumber,
-                        numbers: Obj.numbers,
-                        newAge: newAge,
-                        newEmail: newEmail,
-                        genderType: genderType,
-                        newAddress: newAddress
-                    }
-                    localStorage.setItem(newNumber, JSON.stringify(Obj));
-                }
+            Obj = {
+                user: user,
+                fav: false,
+                newName: newName,
+                newLastName: newLastName,
+                numbers: Obj.numbers,
+                newAge: newAge,
+                newEmail: newEmail,
+                genderType: genderType,
+                newAddress: newAddress
+            }
+            if (firstNumber !== Obj.numbers[0]) {
+                localStorage.removeItem(firstNumber, sessionStorage.getItem("new-contact"));
+                localStorage.setItem(Obj.numbers[0], JSON.stringify(Obj));
+            }
+            else if (firstNumber === Obj.numbers[0]) {
+                localStorage.setItem(firstNumber, JSON.stringify(Obj));
             }
         }
         alert("مشخصات مخاطب ویرایش شد");
         setIsDisabled(true);
+        navigate("/ContactsList");
         sessionStorage.removeItem("edit-contact");
         sessionStorage.removeItem("new-contact");
-        sessionStorage.removeItem("numbers");
-        navigate("/ContactsList");
+        sessionStorage.removeItem("first-number");
     }
     function deleteContact() {
         if (sessionStorage.getItem("edit-contact")) {
-            localStorage.removeItem(editNumber, JSON.stringify(Obj));
+            localStorage.removeItem(numbers[0], JSON.stringify(Obj));
             sessionStorage.removeItem("edit-contact");
-            sessionStorage.removeItem("numbers");
+            sessionStorage.removeItem("first-number");
             alert(`مخاطب ${editLastName} ${editName} حذف شد`);
         }
         else {
-            localStorage.removeItem(newNumber, JSON.stringify(Obj));
+            localStorage.removeItem(numbers[0], JSON.stringify(Obj));
             sessionStorage.removeItem("new-contact");
-            sessionStorage.removeItem("numbers");
+            sessionStorage.removeItem("first-number");
             alert(`مخاطب ${newLastName} ${newName} حذف شد`);
         }
         navigate("/");
@@ -162,13 +183,35 @@ export default function ContactPage() {
                 : setNewLastName(e.target.value)
         }
     }
-    function handleChangeNumberValue(e) {
+    function handleChangeNumberValue(e, number) {
         const regExp = /^[0-9]*$/.test(e.target.value);
-        if (regExp) { setEditNumber(e.target.value) }
-        else{
+        if (regExp) {
+            const otherNums = numbers.filter((item) => item !== number);
+            if (number === Obj.numbers[0]) {
+                if (e.target.value.length === 11) {
+                    const num = [e.target.value];
+                    Object.assign(Obj.numbers, num.concat(otherNums));
+                }
+            }
+            else {
+                if (e.target.value.length === 11) {
+                    const num = [e.target.value];
+                    Object.assign(Obj.numbers, otherNums.concat(num));
+                }
+            }
+        }
+        else {
             alert("شماره باید لاتین وارد شود");
             return
         }
+    }
+    function handleAddNumClick() {
+        setNumbers([...numbers, ""]);
+    }
+    function handleRemoveNumber(e, number) {
+        e.preventDefault();
+        setNumbers(numbers.filter((item) => item !== number));
+        setMoreNumsList(moreNumsList.filter((item) => item !== number))
     }
     function handleChangeAgeValue(e) {
         const regExp = /^[0-9]*$/.test(e.target.value);
@@ -200,7 +243,7 @@ export default function ContactPage() {
                 onClick={() => {
                     sessionStorage.removeItem("edit-contact");
                     sessionStorage.removeItem("new-contact");
-                    sessionStorage.removeItem("numbers");
+                    sessionStorage.removeItem("first-number");
                     navigate("/")
                 }} />
             <h2>مشخصات مخاطب</h2>
@@ -225,21 +268,38 @@ export default function ContactPage() {
             <div className="flex-items">
                 <Input
                     labelText="شماره تلفن: "
-                    value={sessionStorage.getItem("edit-contact") ? editNumber : newNumber}
+                    value={isDisabled ? numbers[0] : Input.value}
                     name="number"
                     type="tel"
                     disabled={isDisabled}
-                    onChange={handleChangeNumberValue} />
+                    onChange={(e) => handleChangeNumberValue(e, numbers[0])} />
             </div>
-            {isNumEmpty === false ?
-                <Numbers
-                    Obj={Obj}
-                    isDisabled={isDisabled} />
-                : null}
-
+            {numbersExceptFirstNumber !== [] ?
+                numbersExceptFirstNumber.map((number) =>
+                    <div className="flex-items" key={number}>
+                        <div className="inputClass">
+                            <label htmlFor="number">شماره تلفن: </label>
+                            <input
+                                value={isDisabled ? number : Input.value}
+                                name="number"
+                                type="tel"
+                                placeholder="شماره را به همراه پیش شماره وارد کنید"
+                                disabled={isDisabled}
+                                onChange={(e) => handleChangeNumberValue(e, number)} />
+                            <Button
+                                type="button"
+                                text="حذف"
+                                disabled={isDisabled}
+                                className="delete-btn hazf"
+                                onClick={(e) => handleRemoveNumber(e, number)} />
+                        </div>
+                    </div>) : null}
             {isDisabled === false ?
-                <MoreNums
-                    Obj={Obj} />
+                <Button
+                    type="button"
+                    className="black-btn"
+                    onClick={handleAddNumClick}
+                    text="افزودن شماره" />
                 : null}
             <div className="flex-items">
                 <Input
@@ -247,6 +307,7 @@ export default function ContactPage() {
                     value={sessionStorage.getItem("edit-contact") ? editAge : newAge}
                     name="age"
                     type="number"
+                    placeholder="سن را وارد کنید"
                     disabled={isDisabled}
                     onChange={handleChangeAgeValue} />
             </div>
@@ -256,6 +317,7 @@ export default function ContactPage() {
                     value={sessionStorage.getItem("edit-contact") ? editEmail : newEmail}
                     name="email"
                     type="email"
+                    placeholder="something@sample.com"
                     disabled={isDisabled}
                     onChange={handleChangeEmailValue} />
             </div>
@@ -289,8 +351,7 @@ export default function ContactPage() {
             <div className="mailto-tel flex-items">
                 <a className="email-btn" href={sessionStorage.getItem("edit-contact") ? `mailto:${editEmail}`
                     : `mailto:${newEmail}`}>ایمیل</a>
-                <a className="phone-btn" href={sessionStorage.getItem("edit-contact") ? `tel:${editNumber}`
-                    : `tel:${newNumber}`}>تماس</a>
+                <a className="phone-btn" href={`tel:${Obj.numbers[0]}`}>تماس</a>
             </div>
             <div className="flex-items">
                 <Button
