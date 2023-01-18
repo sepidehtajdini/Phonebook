@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: (<Home />),
     children: ([
       {
-        path: "AddNewContactForm",
+        path: "AddContactForm",
         element: (<AddContactForm />)
       },
       {
@@ -42,37 +42,36 @@ const router = createBrowserRouter([
   },
   {
     path: "/ContactPage",
-    element: (<ContactPage />)
+    element: (<ContactPage />),
+    children: ([
+      {
+        path: '/ContactPage/:query',
+        element: (<ContactPage />)
+      }
+    ])
   }
 ])
 export default function App() {
   const [newName, setNewName] = useState("");
   const [newLastName, setNewLastName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
   const [newAge, setNewAge] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newAddress, setNewAddress] = useState("");
   const [genderType, setGenderType] = useState("انتخاب جنسیت");
   const [contactsListClass, setContactsListClass] = useState("hide");
   const [theme, setTheme] = useState("pinkTheme");
-  const [numbersObj, setNumbersObj] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    if (sessionStorage.getItem("last-login")) {
-      setIsLoggedIn(true);
-      setUser(JSON.parse(sessionStorage.getItem("last-login")));
-    }
-  }, [])
+  const [numbers, setNumbers] = useState([]);
+  function addNumber(newNumber) {
+    setNumbers([...numbers, newNumber]);
+  }
   return (
     <NewContactContext.Provider value={{
-      newName, setNewName, newLastName, setNewLastName, newNumber, setNewNumber, newAge, setNewAge,
+      newName, setNewName, newLastName, setNewLastName,
+      newAge, setNewAge,
       newEmail, setNewEmail, newAddress, setNewAddress, genderType, setGenderType,
       contactsListClass, setContactsListClass,
       theme, setTheme,
-      numbersObj, setNumbersObj,
-      isLoggedIn, setIsLoggedIn,
-      user, setUser
+      addNumber, numbers, setNumbers
     }}>
       <div className={theme === "pinkTheme" ? "container pink-container" : "container olive-container"}>
         <RouterProvider router={router} />
