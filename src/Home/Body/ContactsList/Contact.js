@@ -2,64 +2,56 @@ import { useContext } from "react";
 import Button from "../../../Shared/Button/Button";
 import NewContactContext from "../../../NewContactContext";
 import { useNavigate } from "react-router-dom";
-function Contact({ newName, newLastName, newEmail, newAge, newNumber, genderType, newAddress, fav,
-    numbersObj, user }) {
-    const { setNewName, setNewLastName, setNewAge, setNewNumber, setNewEmail, setGenderType, setNewAddress,
-        setNumbersObj } = useContext(NewContactContext);
+function Contact({ id, newName, newLastName, numbers, newEmail, newAge, genderType, newAddress, fav, user }) {
+    const { setNewName, setNewLastName, setNewAge, setNumbers, setNewEmail, setGenderType, setNewAddress
+    } = useContext(NewContactContext);
     const navigate = useNavigate();
     let Obj = {
         user: user,
         fav: fav,
         newName: newName,
         newLastName: newLastName,
-        newNumber: newNumber,
-        numbers: {},
+        numbers: numbers,
         newAge: newAge,
         newEmail: newEmail,
         genderType: genderType,
         newAddress: newAddress
     }
-    if (numbersObj !== {}) {
-        Object.assign(Obj.numbers, Object.values(numbersObj));
-    }
     function removeContact() {
-        localStorage.removeItem(newNumber, JSON.stringify(Obj));
+        localStorage.removeItem(Obj.numbers[0], JSON.stringify(Obj));
         setNewName("");
         setNewLastName("");
-        setNewNumber("");
-        setNumbersObj("");
+        setNumbers([]);
         setNewAge("");
         setNewEmail("");
         setGenderType("");
         setNewAddress("");
-        window.location.reload()
     }
     function editContact() {
         sessionStorage.setItem("edit-contact", JSON.stringify(Obj));
-        navigate("/ContactPage");
+        sessionStorage.setItem("first-number", Obj.numbers[0]);
+        navigate(`/ContactPage/${id}`);
     }
     function handleFav() {
         for (let item of Object.keys(Obj)) {
             if (typeof Obj[item] == "boolean") {
                 if (Obj[item] === false) {
                     Obj[item] = true;
-                    localStorage.setItem(newNumber, JSON.stringify(Obj));
+                    localStorage.setItem(numbers[0], JSON.stringify(Obj));
                 }
                 else {
                     Obj[item] = false;
-                    localStorage.setItem(newNumber, JSON.stringify(Obj));
+                    localStorage.setItem(numbers[0], JSON.stringify(Obj));
                 }
             }
         }
         navigate("/ContactsList")
     }
     return (<tr>
+        <td className={Obj.fav === true ? "fav-row" : null}>{id}</td>
         <td className={Obj.fav === true ? "fav-row" : null}>{newName} {newLastName}</td>
         <td className={Obj.fav === true ? "fav-row" : null}>
-            {newNumber}
-            {Object.values(JSON.parse(localStorage.getItem(newNumber)).numbers).map((item) =>
-                <div key={item}>{Object.values(item)}</div>
-            )}
+            {numbers.map((number) => <div key={number}>{number}</div>)}
         </td>
         <td className={Obj.fav === true ? "fav-row" : null}>{newAge}</td>
         <td className={Obj.fav === true ? "fav-row" : null}>{newEmail}</td>

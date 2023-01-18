@@ -6,7 +6,7 @@ import Button from "../../../Shared/Button/Button";
 import "./contactsList.css";
 import NewContactContext from "../../../NewContactContext";
 export default function ContactsList() {
-  const { theme, isLoggedIn, user } = useContext(NewContactContext);
+  const { theme } = useContext(NewContactContext);
   const [sortSelection, setSortSelection] = useState("hide");
   const [sortingType, setSortingType] = useState("نام خانوادگی");
   const [sortingTypeClass, setSortingTypeClass] = useState("ترتیب: نام خانوادگی");
@@ -19,8 +19,9 @@ export default function ContactsList() {
 
   for (let i = 0; i < localStorage.length; i++) {
     const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    if (isLoggedIn) {
-      if (parsedJson.user === user.username) { arr.push(parsedJson) }
+    if (sessionStorage.getItem("last-login")) {
+      const user = JSON.parse(sessionStorage.getItem("last-login")).username;
+      if (parsedJson.user === user) { arr.push(parsedJson) }
     }
     else {
       if (parsedJson.user === "") { arr.push(parsedJson) }
@@ -83,6 +84,7 @@ export default function ContactsList() {
       <table className={theme === "pinkTheme" ? "pink-table" : "olive-table"}>
         <thead>
           <tr>
+            <th className={theme === "pinkTheme" ? "pink-th" : "olive-th"}>#</th>
             <th className={theme === "pinkTheme" ? "pink-th" : "olive-th"}>نام و نام خانوادگی
               <Button
                 className={AscDsc}
@@ -100,11 +102,11 @@ export default function ContactsList() {
           {isAscending ? <AscendingList arr={arr} /> : <DescendingList arr={arr} />}
           <tr>
             {localStorage.getItem("user-pass") ?
-              <td colSpan="7" className="fav-row">
+              <td colSpan="8" className="fav-row">
                 شما {arr.length} مخاطب دارید
               </td>
               :
-              <td colSpan="7" className="fav-row">
+              <td colSpan="8" className="fav-row">
                 شما {localStorage.length} مخاطب دارید
               </td>}
           </tr>

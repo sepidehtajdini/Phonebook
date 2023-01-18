@@ -64,10 +64,24 @@ td button {
     font-weight: 600;
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:350px) {
+    .contactsList-container{
+        margin-right: -20px;
+    }
     .sorting-btns-container {
         width: 10vw;
     }
+
+    th,
+    td {
+        font-size: 0.44rem;
+    }
+}
+
+@media screen and (min-width:351px) {
+    /* .sorting-btns-container {
+        width: 10vw;
+    } */
 
     th,
     td {
