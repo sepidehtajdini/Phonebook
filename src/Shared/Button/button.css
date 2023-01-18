@@ -77,15 +77,13 @@ button:disabled:hover {
 }
 
 .green-btn,
-.edit-btn,
-.check-btn {
+.edit-btn {
     background-color: #198754;
     border-color: #198754;
 }
 
 .green-btn:hover,
-.edit-btn:hover,
-.check-btn:hover {
+.edit-btn:hover {
     background-color: #136941;
     border-color: #136941;
     box-shadow: 0 0 0 2px #136941;
@@ -198,10 +196,6 @@ button:disabled:hover {
     background-color: darkcyan;
 }
 
-.check-btn {
-    background-image: url("./img/check.svg");
-}
-
 .center {
     margin-right: 35%;
 }
@@ -233,11 +227,6 @@ a {
     .email-btn,
     .power-off-btn {
         background-size: 0.5rem;
-    }
-
-    .check-btn {
-        background-size: 0.45rem;
-        height: 10px;
     }
 
     .search-btn,
@@ -280,8 +269,7 @@ a {
     .descending,
     .phone-btn,
     .email-btn,
-    .power-off-btn,
-    .check-btn {
+    .power-off-btn {
         background-size: 0.65rem;
         width: 10px;
         height: 10px;
@@ -352,8 +340,7 @@ a {
     .descending,
     .phone-btn,
     .email-btn,
-    .power-off-btn,
-    .check-btn {
+    .power-off-btn {
         background-size: 1em;
     }
 
