@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import SearchContext from "../../../SearchContext";
 import NewContactContext from "../../../NewContactContext";
 import Button from "../../../Shared/Button/Button";
-function SearchResult() {
+export default function SearchResult() {
     const { theme } = useContext(NewContactContext);
     const navigate = useNavigate();
     const { findText, searchText } = useContext(SearchContext);
@@ -23,4 +23,3 @@ function SearchResult() {
         </>
     )
 }
-export default SearchResult
