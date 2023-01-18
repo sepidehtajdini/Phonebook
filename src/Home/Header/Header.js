@@ -83,7 +83,7 @@ function Header() {
                 onClick={() => {
                     setOutlet("form");
                     setAlphabetsClass("hide");
-                    navigate("/AddNewContactForm");
+                    navigate("/AddContactForm");
                 }}
                 type="button" />
             <Tooltip
