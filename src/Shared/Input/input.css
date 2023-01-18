@@ -29,6 +29,7 @@ input:focus {
         margin-top: 2px;
         padding: 2px;
     }
+
     input {
         height: 0.8rem;
         margin-left: 5px;
@@ -72,7 +73,7 @@ input:focus {
     }
 
     .gender-type {
-        width: 40px;
+        width: 50px;
         margin-top: 4px;
         padding: 0;
     }
@@ -102,7 +103,7 @@ input:focus {
     }
 
     .gender-type {
-        width: 30px;
+        width: 55px;
         margin-top: 4px;
         padding: 0;
     }
@@ -130,7 +131,6 @@ input:focus {
     }
 
     .gender-type {
-        width: 35px;
         margin-top: 5px;
         padding: 2px;
     }
@@ -156,7 +156,7 @@ input:focus {
     }
 
     .gender-type {
-        width: 50px;
+        width: 70px;
         padding: 4px;
     }
 
@@ -177,7 +177,7 @@ input:focus {
     }
 
     .gender-type {
-        width: 60px;
+        width: 80px;
         padding: 5px;
     }
 
