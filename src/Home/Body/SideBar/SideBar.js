@@ -6,56 +6,33 @@ import SearchContext from "../../../SearchContext";
 import NewContactContext from "../../../NewContactContext";
 function SideBar() {
     const navigate = useNavigate();
-    const { theme, isLoggedIn, user } = useContext(NewContactContext);
+    const { theme } = useContext(NewContactContext);
     const { setFindTextClass, setAlphabetsClass, setPair, setOutlet } = useContext(SearchContext);
     let contacts = [];
     let keyValues = [];
     for (let i = 0; i < localStorage.length; i++) {
         const parsedJson = JSON.parse(localStorage.getItem(localStorage.key(i)));
-        if (isLoggedIn) {
-            if (parsedJson.user === user.username) {
+        if (sessionStorage.getItem("last-login")) {
+            const user = JSON.parse(sessionStorage.getItem("last-login")).username;
+            if (parsedJson.user === user) {
                 contacts.push(parsedJson.newLastName + " " + parsedJson.newName);
-                if (parsedJson.numbers !== {}) {
-                    keyValues.push(
-                        `${parsedJson.newLastName + " " + parsedJson.newName}:
+                keyValues.push(`${parsedJson.newLastName + " " + parsedJson.newName}:
                 <div style="background-color:lightgray;border-radius:.4rem;text-align:center">
-                    <div>${parsedJson.newNumber}</div>
                     ${Object.values(parsedJson.numbers).map((num) =>
-                            `<div>${num}</div>`)}
+                    `<div>${num}</div>`)}
                     <div>${parsedJson.newEmail}</div>
-                </div > `)
-                }
-                else {
-                    keyValues.push(
-                        `${parsedJson.newLastName + " " + parsedJson.newName}:
-                <div style="background-color:lightgray;border-radius:.4rem;text-align:center">
-                    <div>${parsedJson.newNumber}</div>
-                    <div>${parsedJson.newEmail}</div>
-                </div > `)
-                }
+                </div> `)
             }
         }
         else {
             if (parsedJson.user === "") {
                 contacts.push(parsedJson.newLastName + " " + parsedJson.newName);
-                if (parsedJson.numbers !== {}) {
-                    keyValues.push(
-                        `${parsedJson.newLastName + " " + parsedJson.newName}:
+                keyValues.push(`${parsedJson.newLastName + " " + parsedJson.newName}:
                 <div style="background-color:lightgray;border-radius:.4rem;text-align:center">
-                    <div>${parsedJson.newNumber}</div>
                     ${Object.values(parsedJson.numbers).map((num) =>
-                            `<div>${num}</div>`)}
+                    `<div>${num}</div>`)}
                     <div>${parsedJson.newEmail}</div>
-                </div > `)
-                }
-                else {
-                    keyValues.push(
-                        `${parsedJson.newLastName + " " + parsedJson.newName}:
-                <div style="background-color:lightgray;border-radius:.4rem;text-align:center;width">
-                    <div>${parsedJson.newNumber}</div>
-                    <div>${parsedJson.newEmail}</div>
-                </div > `)
-                }
+                </div> `)
             }
         }
     }
